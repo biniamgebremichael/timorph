@@ -2,7 +2,7 @@ running the code will generate derivatives of the verb (wash) in active and pass
 
 the Tigrinya word is first converted to latin characters before running the FST. and converted back to Tigrinya for output
 
-Output
+#Output 
 ```
 ሓጸበ (active)
 PRE
