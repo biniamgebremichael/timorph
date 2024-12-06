@@ -2,8 +2,9 @@ running the code will generate derivatives of the verb (wash) in active and pass
 
 the Tigrinya word is first converted to latin characters before running the FST. and converted back to Tigrinya for output
 
-==========
-ሓጸበ
+Output
+
+ሓጸበ (active)
 PRE
 OBJECT,N,	ME,	HER,	HIM
 I,ሓጺበ (I wash N) ,	ሓጺበ (I wash ME) ,	ሓጺበያ (I wash HER) ,	ሓጺበዮ (I wash HIM) 
@@ -28,7 +29,8 @@ YOU_SM,ሓጺብካ (YOU_SM wash N) ,	ሓጺብካኒ (YOU_SM wash ME) ,	ሓጺ�
 YOU_SF,ሓጺብኪ (YOU_SF wash N) ,	ሓጺብኪ (YOU_SF wash ME) ,	ሓጺብኪያ (YOU_SF wash HER) ,	ሓጺብኪዮ (YOU_SF wash HIM) 
 YOU_PM,ሓጺብኩም (YOU_PM wash N) ,	ሓጺብኩምኒ (YOU_PM wash ME) ,	ሓጺብኩምዋ (YOU_PM wash HER) ,	ሓጺብኩምዎ (YOU_PM wash HIM) 
 YOU_PF,ሓጺብክን (YOU_PF wash N) ,	ሓጺብክናኒ (YOU_PF wash ME) ,	ሓጺብክንኣ (YOU_PF wash HER) ,	ሓጺብክንኦ (YOU_PF wash HIM) 
-==========
+
+ 
 ኣሕጸበ  (passive)
 PRE
 OBJECT,N,	ME,	HER,	HIM
