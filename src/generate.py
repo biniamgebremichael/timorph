@@ -67,8 +67,8 @@ def main(word):
 
 # test7()
 os.environ['SCORE_FILE'] = sys.argv[1]
-#words = ["ተቐበለ", "ሓጸበ", 'ሰበረ', 'ደንገጸ', 'ሳዕስዐ']
-words = GeezScore.get3char()
+words = ["ተቐበለ", "ሓጸበ", 'ሰበረ', 'ደንገጸ', 'ሳዕስዐ']
+#words = GeezScore.get3char()
 executor = ThreadPoolExecutor()
 for word in words:
     executor.submit(main, word )
