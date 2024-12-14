@@ -47,7 +47,7 @@ class Geez2Sera:
         Geez2Sera.init()
         words = []
         for w in word.split():
-            w3 = "".join([Geez2Sera._geez_sera[w1] for w1 in w])
+            w3 = "".join([Geez2Sera._geez_sera[w1] for w1 in w if w1 in Geez2Sera._geez_sera ])
             words.append(w3)
 
         return " ".join(words)
