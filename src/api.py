@@ -1,7 +1,7 @@
 from flask import Flask
-from gparser  import FstMap
+from gparser import FstMap
 import os
-from gparser  import TFST
+from gparser import TFST
 from Geez2Sera import Geez2Sera
 from GeezScore import GeezScore
 
@@ -23,9 +23,13 @@ def consumer(src, x):
 
 @app.route('/<verb>/<src>')
 def past_tense(verb, src):
-    fst =  FstMap.FstMap()
-    map = fst.generate_all3([verb.upper()], Geez2Sera.geez2sera(src), consumer)
-    return {"map": map, "count_unique": len(counter), "count_all": sum([i for i in counter.values()])}
+    fst = FstMap.FstMap()
+    result = fst.generate_all3([verb.upper()], Geez2Sera.geez2sera(src), consumer)
+    return app.response_class(
+        response={"map": result, "count_unique": len(counter), "count_all": sum([i for i in counter.values()])},
+        status=200,
+        mimetype='application/json'
+    )
 
 
 @app.route('/generate/<feature>/<src>')
