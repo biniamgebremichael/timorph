@@ -3,7 +3,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir pyfoma
 
 WORKDIR /
-COPY src  /src
+COPY src  /
 COPY ti_score.txt  /src/
 WORKDIR /src
 ENTRYPOINT ["python3", "app.py"]
