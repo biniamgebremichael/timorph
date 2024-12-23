@@ -9,8 +9,10 @@ class GeezScore:
     @staticmethod
     def is_cecece(word):
         # Define a regex pattern for consonant-vowel-consonant-vowel-consonant-vowel
-        pattern = r'^[^aeiouIE][\w][^aeiouIE][\w][^aeiouIE][\w]$'
-        return bool(re.fullmatch(pattern, word))
+        #pattern = r'^[^aeiouIE][\w][^aeiouIE][\w][^aeiouIE][\w]$'
+        pattern = r'^[^aeiouIE][ea][^aeiouIE][ae][^aeiouIE][e]$'
+        pattern2 = r'^[^aeiouIE][ea][^aeiouIE][aeiouIE][^aeiouIE][aeouIE][^aeiouIE][e]$'
+        return bool(re.fullmatch(pattern, word)) or bool(re.fullmatch(pattern2, word))
 
     @staticmethod
     def init():

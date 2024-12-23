@@ -1,23 +1,43 @@
-from cgi import parse_qs, escape
+from flask import Flask
+from src.parser.FstMap import FstMap
+from src.parser.Utils import *
 from Geez2Sera import Geez2Sera
-from GeezFst import GeezFst
-import json
+import json, os
+from src.parser.TFST import TFST
+from Geez2Sera import Geez2Sera
+from GeezScore import GeezScore
 
-def application(environ, start_response):
-    status = '200 OK'
-    response_header = [('Content-type', 'text/json')]
-    parameters = parse_qs(environ['QUERY_STRING'])
-    if('word' in parameters):
-        word = parameters['word']
-        word_active = Geez2Sera.geez2sera(word)
-        geezFst = GeezFst()
-        generated_words, score = geezFst.generate_all(word_active)
-        body = {'word': score,'derivatives':generated_words}
+app = Flask(__name__)
 
-        main = json.dumps(body ).encode("utf-8")
+counter = {}
+os.environ["SCORE_FILE"] = "ti_score.txt"
 
-        start_response(status, response_header)
-        return [main]
-    else:
-        start_response(status, response_header)
-        return [json.dumps({"error","provide a Tigrinya verb to generate derivatives"}).encode("utf-8")]
+
+def consumer(src, x):
+    geez = Geez2Sera.sera2geez(x)
+    score = GeezScore.exists(geez)
+    if (score > 0):
+        if (not geez in counter):
+            counter[geez] = 0
+        counter[geez] = counter[geez] + score
+    return [geez,str(score)]
+
+
+@app.route('/<verb>/<src>')
+def past_tense(verb, src):
+    fst = FstMap()
+    map = fst.generate_all3([verb.upper()], Geez2Sera.geez2sera(src), consumer)
+    return {"map": map, "count_unique": len(counter), "count_all": sum([i for i in counter.values()])}
+
+
+@app.route('/generate/<feature>/<src>')
+def generate(feature, src):
+    tfst = TFST(feature)
+    sera = Geez2Sera.geez2sera(src)
+    generator = tfst.generate(sera)
+    return Geez2Sera.sera2geez(list(generator)[0])
+
+
+# main driver function
+if __name__ == '__main__':
+    app.run()

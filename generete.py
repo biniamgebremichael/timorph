@@ -1,7 +1,5 @@
 from pyfoma import FST
 
-from src.lomitec.converter.romanizer import *
-
 variable = {'V': FST.re("[aeiouI@E]"),
             'C': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNZCPSQW]"),
             "empty": FST.re("$^rewrite(a:a)"),

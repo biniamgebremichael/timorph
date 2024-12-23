@@ -1,0 +1,24 @@
+PRESENT,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
+I,e_Iku,-2e_i,e_IkIwo,e_IkIwa,-2e_i,e_IkIwomI,e_IkIwenI,e_IkuKa,e_IkuKi,e_IkuKumI,e_IkuKInI
+HE,e_Ika,_ni,e_o,e_a,_na,e_omI,_nI,_ka,_ki,_kumI,_kInI
+SHE,_tI,_tIni,_to,_ta,_tIna,_tomI,_tenI,_tIka,_tIki,_tIkumI,_tenI
+WE,e_Ina,e_Ina,e_Inayo,e_Inaya,e_Ina,e_InayomI,e_InayenI,e_Inaka,e_Inaki,e_InakumI,e_InakInI
+THEY_M,e_u,e_uni,e_uwo,e_uwa,e_una,e_uwomI,e_IwenI,e_uKa,e_uKi,_KumI,_kInI
+THEY_F,e_a,e_ani,e_IAo,e_IAa,e_ana,e_IAomI,e_IAenI,e_aKa,e_aKi,e_aKumI,e_aKInI
+YOU_SM,e_Ika,e_Ikani,e_Ikayo,e_Ikaya,e_Ikana,e_IkayomI,e_IkayenI,e_Ikayo,e_Ikaya,e_InakumI,e_IkayenI
+YOU_SF,e_Iki,e_IkInani,e_IkIyo,e_IkIya,e_IkIna,e_IkIyomI,e_IkIyenI,e_Ikiyo,e_Ikiya,e_IkIyomI,e_IkIyenI
+YOU_PM,e_IkumI,e_IkumIni,e_Ikumo,e_Ikuma,e_umIna,e_IkumomI,e_IkumenI,e_IkumIwo,e_IkumIwa,e_IkumomI,e_IkumenI
+YOU_PF,_kInI,_kInani,e_IkInIAo,e_IkInIAa,e_IkInana,e_IkInomI,e_IkInIAenI,e_IkInIAo,e_IkIyenI,e_IkInIAomI,e_IkInIAenI
+PAST,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
+I,-2e_i,-2e_i,-2e_i @ _yo,-2e_i @ _ya,-2e_i,-2e_i @ _yomI,-2e_i @ _yenI,-2e_i @ _ka,-2e_i @ _ki,-2e_i @ _kumI,-2e_i @ _kInI
+HE,-2e_i @ e_Ika,-2e_i @ e_uni,-2e_i @ e_uwo,-2e_i @ e_Iwa,-2e_i @ _na,-2e_i @ e_IwomI,-2e_i @ e_IwenI,-2e_i @ e_uka,-2e_i @ e_uki,-2e_i @ e_IkumI,-2e_i @ _kInI
+SHE,-2e_i @ e_a,-2e_i @ e_atIni,-2e_i @ e_ato,-2e_i @ e_ata,-2e_i @ e_atIna,-2e_i @ e_atomI,-2e_i @ e_atenI,-2e_i @ e_atIka,-2e_i @ e_Inaki,-2e_i @ e_atIkumI,-2e_i @ e_atenI
+WE,-2e_i @ e_Ina,-2e_i @ e_Ina,-2e_i @ e_Inayo,-2e_i @ e_Inaya,-2e_i @ e_Ina,-2e_i @ e_InayomI,-2e_i @ e_InayenI,-2e_i @ e_Inaka,-2e_i @ e_Inaki,-2e_i @ e_InakumI,-2e_i @ e_InakInI
+THEY_M,-2e_i @ e_omI,-2e_i @ e_omIni,-2e_i @ e_omo,-2e_i @ e_uwa,-2e_i @ e_omuna,-2e_i @ _momI,-2e_i @ e_omenI,-2e_i @ e_omuKa,-2e_i @ e_uki,-2e_i @ _kumI,-2e_i @ _kInI
+THEY_F,-2e_i @ _nI,-2e_i @ _nani,-2e_i @ e_IkInIAo,-2e_i @ _neAa,-2e_i @ _nana,-2e_i @ _nomI,-2e_i @ _nIAenI,-2e_i @ e_aKa,-2e_i @ _naKi,-2e_i @ e_atIkumI,-2e_i @ e_atIkInI
+YOU_SM,-2e_i @ e_Ika,-2e_i @ e_Ikani,-2e_i @ e_Ikayo,-2e_i @ e_Ikaya,-2e_i @ e_Ikana,-2e_i @ e_IkayomI,-2e_i @ e_IkayenI,-2e_i @ e_Ikayo,-2e_i @ e_Ikaya,-2e_i @ e_InakumI,-2e_i @ e_IkayenI
+YOU_SF,-2e_i @ e_Iki,-2e_i @ e_IkInani,-2e_i @ e_IkIyo,-2e_i @ e_IkIya,-2e_i @ e_IkIna,-2e_i @ e_IkiyomI,-2e_i @ e_IkIyenI,-2e_i @ e_atIka,-2e_i @ e_IkIya,-2e_i @ e_IkIyomI,-2e_i @ e_IkIyenI
+YOU_PM,-2e_i @ e_IkumI,-2e_i @ e_IkumIni,-2e_i @ e_Ikumo,-2e_i @ e_IkumIwa,-2e_i @ e_Ikumuna,-2e_i @ e_IkumomI,-2e_i @ e_IkumenI,-2e_i @ e_IkumIwo,-2e_i @ e_IkumIwa,-2e_i @ e_IkumomI,-2e_i @ e_IkumenI
+YOU_PF,-2e_i @ e_IkInI,-2e_i @ _kInani,-2e_i @ e_IkInIAo,-2e_i @ e_IkInIAa,-2e_i @ e_IkInana,-2e_i @ e_IkInIAomI,-2e_i @ e_IkInIAenI,-2e_i @ e_IkInIAo,-2e_i @ e_IkInIAa,-2e_i @ e_IkInIAomI,-2e_i @ e_IkInIAenI
+POSSESSIVE,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
+I,_,u_oyI @ i_eyI,u_uAu @ i_u @ -2$V_I @$V_u,i_a @ u_IAa,i_I @ _na,i_I @ $V_omI,i_enI @ u_uAenI,i_I @ _Ka,i_I @ _Ki,i_I @ _KumI,i_I @ _KInI

@@ -35,7 +35,7 @@
 ሢ ^si
 ሣ ^sa
 ሤ ^sE
-ሥ ^s
+ሥ ^sI
 ሦ ^so
 
 ረ re
@@ -74,7 +74,7 @@
 ቊ qWi
 ቋ qWa
 ቌ qWE
-ቍ qW
+ቍ qWI
 
 ቐ Qe
 ቑ Qu
@@ -85,10 +85,11 @@
 ቖ Qo
 
 ቘ QWe
+ቑ QWu
 ቚ QWi
 ቛ QWa
 ቜ QWE
-ቝ QW
+ቝ QWI
 
 በ be
 ቡ bu
@@ -127,14 +128,15 @@
 ኂ ^hi
 ኃ ^ha
 ኄ ^hE
-ኅ ^h
+ኅ ^hI
 ኆ ^ho
 
 ኈ ^hWe
+ኁ ^hWu
 ኊ ^hWi
 ኋ ^hWa
 ኌ ^hWE
-ኍ ^hW
+ኍ ^hWI
 
 ነ ne
 ኑ nu
@@ -160,6 +162,15 @@
 እ 1I
 ኦ 1o
 
+
+አ Ae
+ኡ Au
+ኢ Ai
+ኣ Aa
+ኤ AE
+እ AI
+ኦ Ao
+
 ከ ke
 ኩ ku
 ኪ ki
@@ -172,7 +183,7 @@
 ኲ kWi
 ኳ kWa
 ኴ kWE
-ኵ kW
+ኵ kWI
 
 ኸ Ke
 ኹ Ku
@@ -186,7 +197,7 @@
 ዂ KWi
 ዃ KWa
 ዄ KWE
-ዅ KW
+ዅ KWI
 
 ወ we
 ዉ wu
@@ -195,6 +206,14 @@
 ዌ wE
 ው wI
 ዎ wo
+
+ዐ Oe
+ዑ Ou
+ዒ Oi
+ዓ Oa
+ዔ OE
+ዕ OI
+ዖ Oo
 
 ዐ 2e
 ዑ 2u
@@ -257,7 +276,7 @@
 ጒ gWi
 ጓ gWa
 ጔ gWE
-ጕ gW
+ጕ gWI
 
 
 ጠ Te
@@ -297,7 +316,7 @@
 ፂ ^Si
 ፃ ^Sa
 ፄ ^SE
-ፅ ^S
+ፅ ^SI
 ፆ ^So
 
 ፈ fe

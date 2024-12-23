@@ -1,12 +1,12 @@
-import re
+import re,os
 class Geez2Sera:
     _geez_sera = {}
     _sera_geez = {}
-
+    SRC_DIR = os.path.join(os.path.dirname(__file__), os.pardir, 'src')
     @staticmethod
     def init():
         if len(Geez2Sera._geez_sera) <= 0:
-            f = open("sera.txt", encoding='utf-8')
+            f = open(os.path.join(Geez2Sera.SRC_DIR, "sera.txt"), encoding='utf-8')
             lines = f.readlines()
 
             for l in lines:
@@ -14,7 +14,7 @@ class Geez2Sera:
                 if len(ls) == 2:
                     Geez2Sera._geez_sera[ls[0].strip()] = ls[1].strip()
                     Geez2Sera._sera_geez[ls[1].strip()] = ls[0].strip()
-
+            f.close()
     @staticmethod
     def split_syllabus(string):
         # Regular expression to sylobus at every vowel, keeping the vowel with the previous part
@@ -37,7 +37,7 @@ class Geez2Sera:
         Geez2Sera.init()
         words = []
         for w in word.split():
-            w3 = "".join([Geez2Sera._sera_geez[w1.strip()] for w1 in Geez2Sera.split_syllabus(w)])
+            w3 = "".join([Geez2Sera._sera_geez[w1.strip()] if w1 in Geez2Sera._sera_geez else Geez2Sera._sera_geez[w1.strip().replace("W",'')]  for w1 in Geez2Sera.split_syllabus(w)])
             words.append(w3)
 
         return " ".join(words)
@@ -47,7 +47,7 @@ class Geez2Sera:
         Geez2Sera.init()
         words = []
         for w in word.split():
-            w3 = "".join([Geez2Sera._geez_sera[w1] for w1 in w if w1 in Geez2Sera._geez_sera ])
+            w3 = "".join([Geez2Sera._geez_sera[w1] for w1 in w if (w1 in Geez2Sera._geez_sera)])
             words.append(w3)
 
         return " ".join(words)
