@@ -6,5 +6,4 @@ WORKDIR /
 RUN mkdir /src
 ADD src  /src/
 COPY ti_score.txt  /src/
-WORKDIR /src
-ENTRYPOINT ["python3", "api.py"]
+ENTRYPOINT ["python3", "/src/api.py"]
