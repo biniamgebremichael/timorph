@@ -5,6 +5,7 @@ class GeezScore:
     _all_words = set()
     _geez_3or4char = set()
     _geez_cecece = set()
+    SRC_DIR =  os.path.dirname(__file__)
 
     @staticmethod
     def is_cecece(word):
@@ -18,7 +19,7 @@ class GeezScore:
     def init():
         if len(GeezScore._all_words) <= 0 :
             score_file = os.environ["SCORE_FILE"]
-            f = open(score_file, encoding='utf-8')
+            f = open(os.path.join(GeezScore.SRC_DIR, score_file) , encoding='utf-8')
             lines = f.readlines()
 
             for l in lines:

@@ -1,6 +1,6 @@
 import unittest
-from src.parser.TFST import TFST
-from src.Geez2Sera import Geez2Sera
+from  gparser.TFST import TFST
+from  Geez2Sera import Geez2Sera
 
 def add(x, y):
     return x + y

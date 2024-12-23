@@ -1,12 +1,15 @@
 import json
-from src.parser.Utils import *
-from src.parser.TFST import TFST
+import os
+from  gparser.Utils import *
+from  gparser  import TFST
 
 
 class FstMap:
 
+    SRC_DIR =  os.path.dirname(__file__)
+
     def __init__(self):
-        f = open(file="parser/FST2.csv", mode="r", encoding='utf-8')
+        f = open(os.path.join(FstMap.SRC_DIR, "FST2.csv"), mode="r", encoding='utf-8')
         lines = f.readlines()
         self.map = {}
         currentTense = ''
@@ -24,7 +27,7 @@ class FstMap:
                     for i in range(1, len(rows)):
                         feature = rows[i].strip()
                         feature = '_' if len(feature) <= 1 else feature
-                        self.map[currentTense][rows[0]][object[i]]  = TFST(feature)
+                        self.map[currentTense][rows[0]][object[i]]  = TFST.TFST(feature)
                         #self.map[currentTense][rows[0]][object[i]] =  feature
 
     def getMap(self):

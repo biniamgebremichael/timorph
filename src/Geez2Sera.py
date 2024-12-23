@@ -2,7 +2,7 @@ import re,os
 class Geez2Sera:
     _geez_sera = {}
     _sera_geez = {}
-    SRC_DIR = os.path.join(os.path.dirname(__file__), os.pardir, 'src')
+    SRC_DIR =  os.path.dirname(__file__)
     @staticmethod
     def init():
         if len(Geez2Sera._geez_sera) <= 0:

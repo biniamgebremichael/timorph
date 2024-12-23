@@ -1,6 +1,6 @@
-from src.parser.FstMap import FstMap
-from src.parser.TFST import TFST
-from src.parser.Utils import *
+from src.gparser.FstMap import FstMap
+from src.gparser.TFST import TFST
+from src.gparser.Utils import *
 from Geez2Sera import Geez2Sera
 from GeezScore import GeezScore
 import os
