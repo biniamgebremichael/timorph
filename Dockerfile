@@ -2,9 +2,8 @@ FROM python:3.9-slim
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir pyfoma
 
-MKDIR /app
-WORKDIR /app
-COPY src  /app/src
-COPY ti_score.txt  /app/src/
-WORKDIR /app/src
+WORKDIR /
+COPY src  /src
+COPY ti_score.txt  /src/
+WORKDIR /src
 ENTRYPOINT ["python3", "app.py"]
