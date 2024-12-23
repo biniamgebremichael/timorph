@@ -5,5 +5,5 @@ RUN pip install --no-cache-dir --upgrade pip && \
 WORKDIR /app
 COPY src  /app/src
 COPY ti_score.txt  /app/src/
-
+WORKDIR /app/src
 ENTRYPOINT ["python3", "app.py"]
