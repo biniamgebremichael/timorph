@@ -6,4 +6,4 @@ WORKDIR /
 COPY src  /
 COPY ti_score.txt  /src/
 WORKDIR /src
-ENTRYPOINT ["python3", "app.py"]
+ENTRYPOINT ["python3", "api.py"]
