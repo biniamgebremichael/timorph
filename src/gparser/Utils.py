@@ -1,4 +1,4 @@
-import re
+import re,json
 
 
 def _add_vowel_I(input_str):
@@ -61,9 +61,10 @@ def _validate(src):
 
 
 def csvPrint(map):
+    print(json.dumps(map, indent='\t'))
     for x, y in map.items():
-        header = f"{x:<{15}}" + ',' + ','.join([f"{a:<{15}}"  for a in y['I']])
+        header = f"{x:<{15}}" + ',' + ','.join([f"{a:<{15}}"  for a in y['N']])
         print(header)
         for a, b in y.items():
-            line = f"{a:<{15}}" + ',' + ','.join([f"{m:<{15}}"  for m in y[a].values()])
+            line = f"{a:<{15}}" + ',' + ','.join([f"{m:<{15}}"  for m in y[a] ])
             print(line)

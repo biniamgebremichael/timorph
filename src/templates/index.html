@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Files in Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+
+<body class="container" ng-app="myApp">
+<h1>Tigrinya Derivatives</h1>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<section class=" card " ng-controller="generateCtrl">
+    <div class="card-header">
+        <h3><input ng-model="tense" type="text"  > : <input type="text" ng-model="word" > <small
+                ng-bind="data.count_unique"></small>
+        <button class="btn btn-primary float-right pull-right" ng-click="refresh()"> refresh </button></h3></div>
+    <div class="card-body">
+
+        <table class="table">
+            <tr  >
+                <th> - </th>
+                <th ng-repeat="(x,y) in data.map.I" >
+                    <span ng-bind="x"> </span></th>
+            </tr>
+            <tr ng-repeat="(key, value) in data.map">
+
+                <td><span ng-bind="key"></span></td>
+                <td ng-repeat="(x,y) in value">
+                    <span ng-class="{'text-success':y[1]>0,'text-muted':y[1]<=0  }" ng-bind="y[0]"></span></td>
+
+
+        </table>
+    </div>
+</section>
+</body>
+</html>

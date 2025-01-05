@@ -37,7 +37,7 @@ def save(counter):
 
 def runner(fst, form,sera):
     counter[sera] = {}
-    map = fst.generate_all3([form], sera, consumer)
+    map = fst.generate_all2(form, sera )
     #sera = TFST.generate_passive(sera)
     #counter[sera] = {}
     #map = fst.generate_all3([form], sera, consumer)
@@ -53,13 +53,14 @@ if __name__ == '__main__':
 
     counter = {}
 
-    cecece =  ["ከልቢ","ድሙ",'ምስራሕ']
+    cecece =  ["ሃደመ"]
+    #cecece =  ["ከልቢ","ድሙ",'ምስራሕ']
     #cecece = GeezScore.get_cecece()
     print(len(cecece))
 
     start_time = time.time()
     for x in cecece :
-        form = "POSSESSIVE"
+        form = "PAST"
         sera = Geez2Sera.geez2sera(x)
         runner(fst,form, sera)
 

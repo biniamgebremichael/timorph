@@ -1,32 +1,39 @@
-from flask import Flask
+
 from gparser import FstMap
 import os
+import json
 from gparser import TFST
 from Geez2Sera import Geez2Sera
 from GeezScore import GeezScore
+from flask import Flask, render_template
 
-app = Flask(__name__)
-
+app = Flask(__name__  )
 counter = {}
 os.environ["SCORE_FILE"] = "ti_score.txt"
 
 
-def consumer(src, x):
-    geez = Geez2Sera.sera2geez(x)
-    score = GeezScore.exists(geez)
-    if (score > 0):
-        if (not geez in counter):
-            counter[geez] = 0
-        counter[geez] = counter[geez] + score
-    return [geez, str(score)]
+def consumer(maps):
+    unique= set()
+    count = 0
+    for x in maps:
+        for y in maps[x]:
+            if(maps[x][y][1]):
+               count= count+1
+               unique.add(maps[x][y][0])
+    return count,len(unique)
 
 
+@app.route('/')
+def root():
+    return render_template('index.html')
 @app.route('/<verb>/<src>')
 def past_tense(verb, src):
     fst = FstMap.FstMap()
-    result = fst.generate_all3([verb.upper()], Geez2Sera.geez2sera(src), consumer)
+    result = fst.generate_all2(verb.upper(), Geez2Sera.geez2sera(src))
+    counter,unique = consumer(result)
+    data = {"map": result, "count_unique":  unique, "count_all": counter}
     return app.response_class(
-        response={"map": result, "count_unique": len(counter), "count_all": sum([i for i in counter.values()])},
+        response=json.dumps(data),
         status=200,
         mimetype='application/json'
     )
@@ -42,4 +49,4 @@ def generate(feature, src):
 
 # main driver function
 if __name__ == '__main__':
-    app.run(port=5050)
+    app.run( port=5050)
