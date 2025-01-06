@@ -17,7 +17,7 @@ class FstMap:
         currentTense = ''
         for line in lines:
             rows = line.split(',')
-            if (not rows[0].strip() == '' and len(line) > 30):
+            if (not rows[0].strip() == ''  ):
                 if (rows[0].strip() in FstMap.DIRECTIVES):
                     currentTense = rows[0].strip()
                     FstMap.map[currentTense] = {}
@@ -69,10 +69,8 @@ class FstMap:
 
 
 if __name__ == "__main__":
+    os.environ["SCORE_FILE"] = "ti_score.txt"
+    #print(json.dumps(FstMap().getMap()['SUFFIX'] , indent='\t'))
+    print(json.dumps(FstMap().generate_all2('SUFFIX',"hademe"), indent='\t'))
 
-    #print(json.dumps(FstMap().getMap()['PAST'], indent='\t'))
-    print(json.dumps(FstMap().generate_all2('PAST',"hademe"), indent='\t'))
 
-
-
-# print(json.dumps(FstMap().generate_all('negere'),indent='\t'))
