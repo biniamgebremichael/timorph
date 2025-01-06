@@ -22,3 +22,7 @@ YOU_PM,-2e_i @ e_IkumI,-2e_i @ e_IkumIni,-2e_i @ e_Ikumo,-2e_i @ e_IkumIwa,-2e_i
 YOU_PF,-2e_i @ e_IkInI,-2e_i @ _kInani,-2e_i @ e_IkInIAo,-2e_i @ e_IkInIAa,-2e_i @ e_IkInana,-2e_i @ e_IkInIAomI,-2e_i @ e_IkInIAenI,-2e_i @ e_IkInIAo,-2e_i @ e_IkInIAa,-2e_i @ e_IkInIAomI,-2e_i @ e_IkInIAenI
 POSSESSIVE,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
 I,_,u_oyI @ i_eyI,u_uAu @ i_u @ -2$V_I @$V_u,i_a @ u_IAa,i_I @ _na,i_I @ $V_omI,i_enI @ u_uAenI,i_I @ _Ka,i_I @ _Ki,i_I @ _KumI,i_I @ _KInI
+SUFFIX,N,KO,SI,DO,KE
+I,_nI,_ko,_si,_do,_ke
+PREFIX,N,B
+I,_nI,_bI

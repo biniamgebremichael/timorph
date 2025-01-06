@@ -60,6 +60,16 @@ def _validate(src):
     return src
 
 
+def count_success(maps):
+    unique= set()
+    count = 0
+    for x in maps:
+        for y in maps[x]:
+            if(maps[x][y][1]):
+                count= count+1
+                unique.add(maps[x][y][0])
+    return count,len(unique)
+
 def csvPrint(map):
     print(json.dumps(map, indent='\t'))
     for x, y in map.items():

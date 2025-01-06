@@ -7,6 +7,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 
 class FstMap:
 
+    DIRECTIVES = ['PRESENT', 'PAST', 'POSSESSIVE','SUFFIX','PREFIX']
     SRC_DIR =  os.path.dirname(__file__)
     map = {}
     executor = ProcessPoolExecutor(max_workers=50)
@@ -17,7 +18,7 @@ class FstMap:
         for line in lines:
             rows = line.split(',')
             if (not rows[0].strip() == '' and len(line) > 30):
-                if (rows[0].strip() in ['PRESENT', 'PAST','POSSESSIVE']):
+                if (rows[0].strip() in FstMap.DIRECTIVES):
                     currentTense = rows[0].strip()
                     FstMap.map[currentTense] = {}
                     object = {}
@@ -45,15 +46,13 @@ class FstMap:
                 args.append((sub,obj,FstMap.map[tense][sub][obj],src))
 
         with ProcessPoolExecutor() as executor:
-        # Submit tasks and collect Future objects
             futures = {executor.submit(FstMap._generate,num[2],num[3]): num for num in args}
 
         for future in as_completed(futures):
             number = futures[future]
             try:
-                result = future.result()  # Get the result of the computation
+                result = future.result()
                 para[number[0]][number[1]]=result
-                #print(f"The square of {number} is {result}")
             except Exception as e:
                 print(f"Task for {number} raised an exception: {e}")
         #print(json.dumps(para, indent='\t'))

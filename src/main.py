@@ -25,24 +25,24 @@ def printSingle(word):
 
 def save(counter):
     f = open(file="word_score2.txt", mode="w+", encoding='utf-8')
-    sorted_counter = dict(sorted(counter.items(), key=lambda item: len(item[1])))
+    sorted_counter = dict(sorted(counter.items(), key=lambda item:  -1*item[1] ))
     for s, c in sorted_counter.items():
         geez = Geez2Sera.sera2geez(s)
         #line = "{} {} \n".format(geez, c)
-        line = "{} {} {} \n".format(geez, len(c), sum([i for i in c.values()] ))
+        line = "{} {} {} \n".format(geez, c[0], c[1])
         f.write(line)
         print(line, end="")
     f.close()
 
 
 def runner(fst, form,sera):
-    counter[sera] = {}
     map = fst.generate_all2(form, sera )
+    counter[sera] =count_success(map)
     #sera = TFST.generate_passive(sera)
     #counter[sera] = {}
     #map = fst.generate_all3([form], sera, consumer)
 
-    csvPrint(map)
+    #csvPrint(map)
     ##print(sera)
 
 
@@ -53,9 +53,9 @@ if __name__ == '__main__':
 
     counter = {}
 
-    cecece =  ["ሃደመ"]
+    cecece =  ["ነገረ","ከበረ"]
     #cecece =  ["ከልቢ","ድሙ",'ምስራሕ']
-    #cecece = GeezScore.get_cecece()
+    cecece = GeezScore.get_cecece()
     print(len(cecece))
 
     start_time = time.time()
