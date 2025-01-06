@@ -15,6 +15,7 @@ myApp.service('dataService', function($http) {
 
 myApp.controller('generateCtrl', function($scope, dataService) {
     $scope.data = [];
+    $scope.action = "refresh";
     $scope.records = [
             "Alfreds Futterkiste",
             "Berglunds snabbköp",
@@ -24,9 +25,10 @@ myApp.controller('generateCtrl', function($scope, dataService) {
     $scope.tense="PAST";
     $scope.word="ነገረ";
     $scope.refresh = function() {
+        $scope.action = "loading. please wait";
         dataService.getData($scope.tense, $scope.word, function(dataResponse) {
             $scope.data = dataResponse.data;
-            console.log($scope.data)
+            $scope.action = "refresh";
         });
     }
     $scope.refresh();

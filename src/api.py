@@ -4,7 +4,6 @@ import os
 import json
 from gparser import TFST
 from Geez2Sera import Geez2Sera
-from GeezScore import GeezScore
 from flask import Flask, render_template
 
 app = Flask(__name__  )

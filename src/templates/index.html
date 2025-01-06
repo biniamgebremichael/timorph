@@ -3,25 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Files in Flask</title>
+    <title>Tigrinya Derivatives</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/bootstrap.min.js') }}">
 </head>
 
-<body class="container" ng-app="myApp">
-<h1>Tigrinya Derivatives</h1>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<body class="p-4" ng-app="myApp">
+<h2 class="py-4">Tigrinya Derivatives</h2>
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 <section class=" card " ng-controller="generateCtrl">
     <div class="card-header">
-        <h3><input ng-model="tense" type="text"  > : <input type="text" ng-model="word" > <small
-                ng-bind="data.count_unique"></small>
-        <button class="btn btn-primary float-right pull-right" ng-click="refresh()"> refresh </button></h3></div>
+        <div class="row">
+            <div class="col">
+                <select class="form-control" placeholder="tense" ng-model="tense">
+                    <option value="PAST">PAST</option>
+                    <option value="PRESENT">PRESENT</option>
+                    <option value="POSSESSIVE">POSSESSIVE</option>
+                </select>
+
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="root"  ng-model="word">
+            </div>
+           <div class="col">
+            <button type="submit" class="btn btn-primary float-right pull-right" ng-click="refresh()">  <span ng-bind="action"> </span> </button>
+
+           </div>
+        </div>
+
+
+         </div>
     <div class="card-body">
 
         <table class="table">
             <tr  >
-                <th> - </th>
+                <th><button class="btn btn-block btn-light"><span  ng-bind="data.count_unique"></span> / <span  ng-bind="data.count_all"></span> </button> </th>
                 <th ng-repeat="(x,y) in data.map.I" >
                     <span ng-bind="x"> </span></th>
             </tr>
