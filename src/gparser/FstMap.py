@@ -7,7 +7,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 
 class FstMap:
 
-    DIRECTIVES = ['PRESENT', 'PAST', 'POSSESSIVE','SUFFIX','PREFIX','PASSIVE','VERB2NOUN']
+    DIRECTIVES = ['PRESENT', 'PAST', 'POSSESSIVE','SUFFIX','PREFIX','PASSIVE','VERB2NOUN','VERBPREFIX']
     SRC_DIR =  os.path.dirname(__file__)
     map = {}
     executor = ProcessPoolExecutor(max_workers=50)

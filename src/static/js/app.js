@@ -31,6 +31,5 @@ myApp.controller('generateCtrl', function($scope, dataService) {
             $scope.action = "refresh";
         });
     }
-    $scope.refresh();
 });
 
