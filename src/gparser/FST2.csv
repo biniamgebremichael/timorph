@@ -25,4 +25,8 @@ I,_,u_oyI @ i_eyI,u_uAu @ i_u @ -2$V_I @$V_u,i_a @ u_IAa,i_I @ _na,i_I @ $V_omI,
 SUFFIX,N,KO,SI,DO,KE
 I,_nI,_ko,_si,_do,_ke
 PREFIX,N,B
-I,_nI,_bI
+I,0_nI,0_bI
+PASSIVE,N
+I, 0tI_ @ 0q_Q @ 0k_K @ 2q_Q @ 2K_k @ 1e_I @ 1a_I @ 0_Aa
+VERB2NOUN,N
+I, 1e_I @ 1a_I @ -2$e_a @ -2$I_a @e_I @   2K_k @ 0_mI
