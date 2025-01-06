@@ -52,10 +52,13 @@
 
                 <td><span ng-bind="key"></span></td>
                 <td ng-repeat="(x,y) in value">
-                    <span ng-class="{'text-success':y[1]>0,'text-muted':y[1]<=0  }" ng-bind="y[0]"></span></td>
+                    <span ng-class="{'text-success':y[1]>0,'text-muted':y[1]<=0  }" ng-bind="y[0]" ng-click="newword(y[0])"></span></td>
 
 
         </table>
+    </div>
+    <div class="card-footer text-muted">
+  known: <span  ng-bind="data.count_all"></span> - known unique: <span  ng-bind="data.count_unique"></span> - out of: <span  ng-bind="data.total"></span>
     </div>
 </section>
 </body>

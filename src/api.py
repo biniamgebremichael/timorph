@@ -14,12 +14,14 @@ os.environ["SCORE_FILE"] = "ti_score.txt"
 def consumer(maps):
     unique= set()
     count = 0
+    total = 0
     for x in maps:
         for y in maps[x]:
+            total = total+1
             if(maps[x][y][1]):
                count= count+1
                unique.add(maps[x][y][0])
-    return count,len(unique)
+    return total, count,len(unique)
 
 
 @app.route('/')
@@ -29,8 +31,8 @@ def root():
 def past_tense(verb, src):
     fst = FstMap.FstMap()
     result = fst.generate_all2(verb.upper(), Geez2Sera.geez2sera(src))
-    counter,unique = consumer(result)
-    data = {"map": result, "count_unique":  unique, "count_all": counter}
+    total, counter,unique = consumer(result)
+    data = {"map": result, "count_unique":  unique, "count_all": counter, "total": total}
     return app.response_class(
         response=json.dumps(data),
         status=200,

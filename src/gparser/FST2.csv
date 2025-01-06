@@ -24,10 +24,10 @@ POSSESSIVE,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
 I,_,u_oyI @ i_eyI,u_uAu @ i_u @ -2$V_I @$V_u,i_a @ u_IAa,i_I @ _na,i_I @ $V_omI,i_enI @ u_uAenI,i_I @ _Ka,i_I @ _Ki,i_I @ _KumI,i_I @ _KInI
 SUFFIX,N,KO,SI,DO,KE,MO
 I,_nI,_ko,_si,_do,_Ke,_mo
-PREFIX,N,B,Z,ZEY,NZEY,KEMZEY,AY
+PREFIX,N,B,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-,እንተዘይ-, ኣይ-
 I,0_nI,0_bI, 0_zI, 0_zeyI, 0_nIzeyI, 0_kemIzeyI, 0_AayI
-VERBPREFIX,N,Te,Z,ZEY,NZEY,KEMZEY,እንተዘይ, ኣይ, ስለ ,እንተ, ምስ ,ስለዝ ,እና ,ከምዝ, ም
-I,_,0_te, 0_zI, 0_zeyI, 0_nIzeyI, 0_kemIzeyI,0_AInItezeyI, 0_AayI, 0_sIle, 0_AInIte, 0_mIsI, 0_sIlezI, 0_AIna, 0_kemIzI, 0_mI
+VERBPREFIX,N,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-,እንተዘይ-, ኣይ-, ስለ- ,እንተ-, ምስ- ,ስለዝ- ,እና- ,ከምዝ-, ምስዝ- , ም-
+I,_,0_te, 0_zI, 0_zeyI, 0_nIzeyI, 0_kemIzeyI,0_AInItezeyI, 0_AayI, 0_sIle, 0_AInIte, 0_mIsI, 0_sIlezI, 0_AIna, 0_kemIzI,0_mIsIzI, 0_mI
 PASSIVE,N
 I, 0tI_ @ 0q_Q @ 0k_K @ 2q_Q @ 2K_k @ 1e_I @ 1a_I @ 0_Aa
 VERB2NOUN,N

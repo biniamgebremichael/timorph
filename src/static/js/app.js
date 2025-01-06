@@ -24,6 +24,10 @@ myApp.controller('generateCtrl', function($scope, dataService) {
         ]
     $scope.tense="PAST";
     $scope.word="ነገረ";
+
+    $scope.newword = function(nword) {
+     $scope.word=nword;
+    }
     $scope.refresh = function() {
         $scope.action = "loading. please wait";
         dataService.getData($scope.tense, $scope.word, function(dataResponse) {
