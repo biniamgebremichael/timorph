@@ -4,6 +4,7 @@ from Geez2Sera import Geez2Sera
 class GeezScore:
     _all_words = set()
     _geez_3or4char = set()
+    _geez_2char = set()
     _geez_cecece = set()
     SRC_DIR =  os.path.dirname(__file__)
 
@@ -27,6 +28,8 @@ class GeezScore:
                 if len(ls) == 2:
                     w = ls[0].strip()
                     GeezScore._all_words.add(w)
+                    if len(w) ==2 and int(ls[1])>100:
+                        GeezScore._geez_2char.add(w)
                     if len(w) in [3,4]:
                         GeezScore._geez_3or4char.add(w)
                         sera = Geez2Sera.geez2sera(w)

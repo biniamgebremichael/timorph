@@ -13,6 +13,12 @@ class TestTFST(unittest.TestCase):
         self.assertEqual(tfst.rule,"$^rewrite((e):(i) /  _ $C$V # ,longest = True, leftmost = True ) @ $^rewrite((e):(omIni) /  _  # ,longest = True, leftmost = True )")
         self.assertEqual(Geez2Sera.sera2geez(list(tfst.generate(src))[0]), "ኣውጺኦምኒ")
 
+    def test_generate2(self):
+        rule = "I_IkInI @ a_aKInI @ i_iKInI @ u_uKInI @ E_EKInI @ o_oKInI @ e_eKInI "
+        tfst = TFST(rule)
+        self.assertEqual(Geez2Sera.sera2geez(list(tfst.generate( Geez2Sera.geez2sera("ድሙ")))[0]), "ድሙኽን")
+        self.assertEqual(Geez2Sera.sera2geez(list(tfst.generate( Geez2Sera.geez2sera("ቤት")))[0]), "ቤትክን")
+
 
     def test_generate_passive(self):
         src = Geez2Sera.geez2sera("ረኸበ")

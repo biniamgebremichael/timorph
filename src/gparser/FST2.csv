@@ -21,7 +21,7 @@ YOU_SF,-2e_i @ e_Iki,-2e_i @ e_IkIni,-2e_i @ e_IkIyo,-2e_i @ e_IkIya,-2e_i @ e_I
 YOU_PM,-2e_i @ e_IkumI,-2e_i @ e_IkumIni,-2e_i @ e_Ikumo,-2e_i @ e_IkumIwa,-2e_i @ e_Ikumuna,-2e_i @ e_IkumomI,-2e_i @ e_IkumenI,-2e_i @ e_IkumIwo,-2e_i @ e_IkumIwa,-2e_i @ e_IkumomI,-2e_i @ e_IkumenI
 YOU_PF,-2e_i @ e_IkInI,-2e_i @ e_IkInani,-2e_i @ e_IkInIAo,-2e_i @ e_IkInIAa,-2e_i @ e_IkInana,-2e_i @ e_IkInIAomI,-2e_i @ e_IkInIAenI,-2e_i @ e_IkInIAo,-2e_i @ e_IkInIAa,-2e_i @ e_IkInIAomI,-2e_i @ e_IkInIAenI
 POSSESSIVE,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
-I,_,u_oyI @ i_eyI,u_uAu @ i_u @ -2$V_I @$V_u,i_a @ u_IAa,i_I @ _na,i_I @ $V_omI,i_enI @ u_uAenI,i_I @ _Ka,i_I @ _Ki,i_I @ _KumI,i_I @ _KInI
+I,_,$V_eyI,$V_u,$V_a,i_I @ _na,i_I @ $V_omI,$V_enI,a_aKa @ I_Ika @ i_iKa @ u_uKa @ E_EKa @ o_oKa @ e_eKa,i_iKi @ I_Iki @ a_aKi @ u_uKi @ E_EKi @ o_oKi @ e_eKi,I_IkumI @ a_aKumI @ i_iKumI @ u_uKumI @ E_EKumI @ o_oKumI @ e_eKImI,I_IkInI @ a_aKInI @ i_iKInI @ u_uKInI @ E_EKInI @ o_oKInI @ e_eKInI
 SUFFIX,N,KO,SI,DO,KE,MO
 I,_nI,_ko,_si,_do,_Ke,_mo
 PREFIX,N,B,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-,እንተዘይ-, ኣይ-
