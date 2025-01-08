@@ -2,6 +2,7 @@ import os,re
 from Geez2Sera import Geez2Sera
 
 class GeezScore:
+    _top_words = set()
     _all_words = set()
     _geez_3or4char = set()
     _geez_2char = set()
@@ -28,11 +29,13 @@ class GeezScore:
                 if len(ls) == 2:
                     w = ls[0].strip()
                     GeezScore._all_words.add(w)
-                    if len(w) ==2 and int(ls[1])>100:
-                        GeezScore._geez_2char.add(w)
+                    if  int(ls[1])>100:
+                        GeezScore._top_words.add(w)
                     if len(w) in [3,4]:
                         GeezScore._geez_3or4char.add(w)
                         sera = Geez2Sera.geez2sera(w)
+                        # if(sera.endswith("E")):
+                        #     print(w)
                         if(GeezScore.is_cecece(sera)):
                             GeezScore._geez_cecece.add(w)
 

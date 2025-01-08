@@ -33,7 +33,7 @@
                 <input type="text" class="form-control" placeholder="root"  ng-model="word">
             </div>
            <div class="col">
-            <button type="submit" class="btn btn-primary float-right pull-right" ng-click="refresh()">  <span ng-bind="action"> </span> </button>
+            <button type="submit" class="btn btn-primary float-right pull-right" ng-click="refresh(tense,word)">  <span ng-bind="action"> </span> </button>
 
            </div>
         </div>
@@ -42,13 +42,13 @@
          </div>
     <div class="card-body">
 
-        <table class="table">
+        <table class="table" ng-repeat="row in data">
             <tr  >
-                <th><button class="btn btn-block btn-light"><span  ng-bind="data.count_unique"></span> / <span  ng-bind="data.count_all"></span> </button> </th>
-                <th ng-repeat="(x,y) in data.map.I" >
+                <th><div class="badge bg-secondary"> <span  ng-bind="row.count_unique "></span>  / <span  ng-bind=" row.count_all "> </span> </div> </th>
+                <th ng-repeat="(x,y) in row.map.I" >
                     <span ng-bind="x"> </span></th>
             </tr>
-            <tr ng-repeat="(key, value) in data.map">
+            <tr ng-repeat="(key, value) in row.map">
 
                 <td><span ng-bind="key"></span></td>
                 <td ng-repeat="(x,y) in value">
@@ -58,7 +58,10 @@
         </table>
     </div>
     <div class="card-footer text-muted">
-  known: <span  ng-bind="data.count_all"></span> - known unique: <span  ng-bind="data.count_unique"></span> - out of: <span  ng-bind="data.total"></span>
+        <b>Possessive examples</b>
+  <ul class="list list-inline px-4">
+    <li class="list-inline-item" ng-repeat="x in nounexample"><a  ng-click="refresh('POSSESSIVE',x)"  ng-bind="x"> </a></li>
+  </ul>
     </div>
 </section>
 </body>
