@@ -23,7 +23,7 @@ myApp.controller('generateCtrl', function($scope, dataService) {
             "Ernst Handel",
         ]
     $scope.tense="PAST";
-    $scope.word="ነገረ";
+    $scope.word="ገደፈ";
 
     $scope.newword = function(nword) {
      $scope.word=nword;
