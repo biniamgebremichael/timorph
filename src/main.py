@@ -1,6 +1,5 @@
-from src.gparser.FstMap import FstMap
-from concurrent.futures import ProcessPoolExecutor, as_completed
-from src.gparser.Utils import *
+from gparser.FstMap import FstMap
+from gparser.Utils import *
 from Geez2Sera import Geez2Sera
 from GeezScore import GeezScore
 import os
@@ -61,9 +60,9 @@ if __name__ == '__main__':
     #cecece =  ["ከልቢ","ድሙ",'ምስራሕ']
     #cecece = GeezScore.get_cecece()
     GeezScore.init()
-    cecece = GeezScore._top_words
+    cecece = GeezScore._geez_caccc
     print(len(cecece))
-    #print(cecece)
+    print(cecece)
 
     start_time = time.time()
     for x in cecece :

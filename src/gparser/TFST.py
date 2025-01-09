@@ -54,12 +54,3 @@ class TFST:
     def toJSON(self):
         return self.feature
 
-    @staticmethod
-    def generate_passive(src):
-        passive = "0tI_ @ 0q_Q @ 0k_K @ 2q_Q @ 2K_k @ 1e_I @ 1a_I @ 0_Aa"
-        return  list(TFST(passive).generate(src))[0]
-
-    @staticmethod
-    def generate_noun_from_verb(src):
-        passive = " 1e_I @ 1a_I @ -2$e_a @ -2$I_a @e_I @   2K_k @ 0_mI"
-        return  list(TFST(passive).generate(src))[0]

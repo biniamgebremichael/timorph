@@ -3,14 +3,13 @@ import os
 from Geez2Sera import Geez2Sera
 from GeezScore import GeezScore
 from  gparser  import TFST
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, as_completed, wait
 
 class FstMap:
 
     DIRECTIVES = ['PRESENT', 'PAST', 'VERB2VERB','SUFFIX','PREFIX','POSSESSIVE','VERB2NOUN','VERBPREFIX']
     SRC_DIR =  os.path.dirname(__file__)
     map = {}
-    executor = ProcessPoolExecutor(max_workers=50)
     def __init__(self):
         f = open(os.path.join(FstMap.SRC_DIR, "FST2.csv"), mode="r", encoding='utf-8')
         lines = f.readlines() 
@@ -39,15 +38,17 @@ class FstMap:
     def generate_all2(self, tense, src):
         args = []
         para = {}
+        workers = 1
         for sub, fsts in FstMap.map[tense].items():
             para[sub] = {}
             for obj, fst in fsts.items():
                 para[sub][obj]={}
                 args.append((sub,obj,FstMap.map[tense][sub][obj],src))
+                workers=workers+1
 
-        with ProcessPoolExecutor() as executor:
+        with ProcessPoolExecutor(max_workers=workers) as executor:
             futures = {executor.submit(FstMap._generate,num[2],num[3]): num for num in args}
-
+        wait(futures)
         for future in as_completed(futures):
             number = futures[future]
             try:
@@ -55,6 +56,7 @@ class FstMap:
                 para[number[0]][number[1]]=result
             except Exception as e:
                 print(f"Task for {number} raised an exception: {e}")
+        executor.shutdown()
         #print(json.dumps(para, indent='\t'))
         return para
 
@@ -63,6 +65,7 @@ class FstMap:
           fst = TFST.TFST(rule)
           derivative = list(fst.generate(root))[0]
           g_derivative = Geez2Sera.sera2geez(derivative)
+          #print(g_derivative)
           score = GeezScore.exists(g_derivative)
           return g_derivative,score
 

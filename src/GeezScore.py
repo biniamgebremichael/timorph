@@ -7,6 +7,7 @@ class GeezScore:
     _geez_3or4char = set()
     _geez_2char = set()
     _geez_cecece = set()
+    _geez_caccc = set()
     SRC_DIR =  os.path.dirname(__file__)
 
     @staticmethod
@@ -16,6 +17,12 @@ class GeezScore:
         pattern = r'^[^aeiouIE][ea][^aeiouIE][ae][^aeiouIE][e]$'
         pattern2 = r'^[^aeiouIE][ea][^aeiouIE][aeiouIE][^aeiouIE][aeouIE][^aeiouIE][e]$'
         return bool(re.fullmatch(pattern, word)) or bool(re.fullmatch(pattern2, word))
+    @staticmethod
+    def is_caccc(word):
+        # Define a regex pattern for consonant-vowel-consonant-vowel-consonant-vowel
+        #pattern = r'^[^aeiouIE][\w][^aeiouIE][\w][^aeiouIE][\w]$'
+        pattern2 = r'^[^aeiouIE][a][^aeiouIE][I][^aeiouIE][I][^aeinouIE][I]$'
+        return bool(re.fullmatch(pattern2, word))
 
     @staticmethod
     def init():
@@ -38,6 +45,9 @@ class GeezScore:
                         #     print(w)
                         if(GeezScore.is_cecece(sera)):
                             GeezScore._geez_cecece.add(w)
+
+                        if(GeezScore.is_caccc(sera)):
+                            GeezScore._geez_caccc.add(w)
 
 
     @staticmethod
