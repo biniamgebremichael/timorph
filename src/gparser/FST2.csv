@@ -11,10 +11,10 @@ YOU_PM,e_IkumI,e_IkumIni,e_Ikumo,e_Ikuma,e_umIna,e_IkumomI,e_IkumenI,e_IkumIwo,e
 YOU_PF,_kInI,e_IkInani,e_IkInIAo,e_IkInIAa,e_IkInana,e_IkInomI,e_IkInIAenI,e_IkInIAo,e_IkIyenI,e_IkInIAomI,e_IkInIAenI
 PAST,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
 I,-2e_i,-2e_i,-2e_i @ _yo,-2e_i @ _ya,-2e_i,-2e_i @ _yomI,-2e_i @ _yenI,-2e_i @ _ka,-2e_i @ _ki,-2e_i @ _kumI,-2e_i @ _kInI
-HE,-2e_i @ e_Ika,-2e_i @ e_uni,-2e_i @ e_uwo,-2e_i @ e_Iwa,-2e_i @ _na,-2e_i @ e_IwomI,-2e_i @ e_IwenI,-2e_i @ e_uka,-2e_i @ e_uki,-2e_i @ e_IkumI,-2e_i @ _kInI
+HE,-2e_i @ e_Ika,-2e_i @ e_uni,-2e_i @ e_uwo,-2e_i @ e_Iwa,-2e_i @ _na,-2e_i @ e_IwomI,-2e_i @ e_IwenI,-2e_i @ e_uka,-2e_i @ e_uki,-2e_i @ e_IkumI,-2e_i @ e_I @ _kInI
 SHE,-2e_i @ e_a,-2e_i @ e_atIni,-2e_i @ e_ato,-2e_i @ e_ata,-2e_i @ e_atIna,-2e_i @ e_atomI,-2e_i @ e_atenI,-2e_i @ e_atIka,-2e_i @ e_atIki,-2e_i @ e_atIkumI,-2e_i @ e_atenI
 WE,-2e_i @ e_Ina,-2e_i @ e_Ina,-2e_i @ e_Inayo,-2e_i @ e_Inaya,-2e_i @ e_Ina,-2e_i @ e_InayomI,-2e_i @ e_InayenI,-2e_i @ e_Inaka,-2e_i @ e_Inaki,-2e_i @ e_InakumI,-2e_i @ e_InakInI
-THEY_M,-2e_i @ e_omI,-2e_i @ e_omIni,-2e_i @ e_omo,-2e_i @ e_uwa,-2e_i @ e_omuna,-2e_i @ _momI,-2e_i @ e_omenI,-2e_i @ e_omuKa,-2e_i @ e_uki,-2e_i @ _kumI,-2e_i @ _kInI
+THEY_M,-2e_i @ e_omI,-2e_i @ e_omIni,-2e_i @ e_omo,-2e_i @ e_uwa,-2e_i @ e_omuna,-2e_i @ _momI,-2e_i @ e_omenI,-2e_i @ e_omuKa,-2e_i @ e_uki,-2e_i @ _kumI,-2e_i @ $V_omIkInI
 THEY_F,-2e_i @ _nI,-2e_i @ _nani,-2e_i @ _nIAo,-2e_i @ _neAa,-2e_i @ _nana,-2e_i @ _nIAomI,-2e_i @ _nIAenI,-2e_i @ _naKa,-2e_i @ _naKi,-2e_i @ _naKumI,-2e_i @ _naKInI
 YOU_SM,-2e_i @ e_Ika,-2e_i @ e_Ikani,-2e_i @ e_Ikayo,-2e_i @ e_Ikaya,-2e_i @ e_Ikana,-2e_i @ e_IkayomI,-2e_i @ e_IkayenI,-2e_i @ e_Ikayo,-2e_i @ e_Ikaya,-2e_i @ e_InakumI,-2e_i @ e_IkayenI
 YOU_SF,-2e_i @ e_Iki,-2e_i @ e_IkIni,-2e_i @ e_IkIyo,-2e_i @ e_IkIya,-2e_i @ e_IkIna,-2e_i @ e_IkiyomI,-2e_i @ e_IkIyenI,-2e_i @ e_atIka,-2e_i @ e_IkIya,-2e_i @ e_IkIyomI,-2e_i @ e_IkIyenI

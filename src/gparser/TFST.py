@@ -5,7 +5,7 @@ from pyfoma import FST
 class TFST:
 
     variable = {'V': FST.re("[aeiouIE]"),
-                'C': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNZCPSQWAO]")}
+                'C': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNTZCPSQWAO]")}
     def __init__(self, feature):
         self.feature = feature
         self.rule = TFST._getfst(feature)

@@ -9,13 +9,26 @@ from pyfoma import FST
 class TestTFST(unittest.TestCase):
 
     variable = {'V': FST.re("[aeiouIE]"),
-                'C': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNZCPSQWAO]")}
+                'C': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNZCPSQWAOT]")}
+    def test_rule_generator(self):
+        self.assertEqual("$^rewrite((e):(a) /  _ $C$V # ,longest = True, leftmost = True )", TFST._generate("-2e_a"))
     def testPyfoma(self):
-        fst = FST.re("$^rewrite((I):a / $C e $C _ $C a $C $V #,  leftmost = True) @ $^rewrite((a):I / $C e $C a $C _ $C $V #,  leftmost = True)  @ $^rewrite($V:(Iti) / $C e $C a $C I $C _ # )  ",TestTFST.variable)
+        CeCICaCV = "$^rewrite((I):a / $C e $C _ $C a $C $V # ) @ $^rewrite((a):I / $C e $C a $C _ $C $V # )  @ $^rewrite($V:(Iti) / $C e $C a $C I $C _ # )  @ $^rewrite($V:(atI) / $C a $C a $C I $C _ # )"
+        CICICiCV = "$^rewrite($V:(atI) / $C I $C I $C i $C _ #  )"
+        CeCiNa= "$^rewrite(i:(ayI) / $C e $C _ $C a # ) @ $^rewrite(a:I / $C e $C a y I $C _ # )"
+        fst = FST.re(CeCICaCV+' @ '+CICICiCV+' @ '+CeCiNa,TestTFST.variable)
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መጽሓፍ")))[0]), "መጻሕፍቲ")
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መዋእል")))[0]), "መዋእልቲ")
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መውዓሊ")))[0]), "መዋዕልቲ")
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መልኣኽ")))[0]), "መላእኽቲ")
+
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("ሃዋርያ")))[0]), "ሃዋርያት")
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("ምስጢር")))[0]), "ምስጢራት")
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መዓልቲ")))[0]), "መዓልትቲ")
+
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መኪና")))[0]), "መካይን")
+
+
     def test_generate(self):
         src = Geez2Sera.geez2sera("ኣውጸአ")
         rule = "-2e_i @ e_omIni"

@@ -38,15 +38,13 @@ class FstMap:
     def generate_all2(self, tense, src):
         args = []
         para = {}
-        workers = 1
         for sub, fsts in FstMap.map[tense].items():
             para[sub] = {}
             for obj, fst in fsts.items():
                 para[sub][obj]={}
                 args.append((sub,obj,FstMap.map[tense][sub][obj],src))
-                workers=workers+1
 
-        with ProcessPoolExecutor(max_workers=workers) as executor:
+        with ProcessPoolExecutor() as executor:
             futures = {executor.submit(FstMap._generate,num[2],num[3]): num for num in args}
         wait(futures)
         for future in as_completed(futures):
