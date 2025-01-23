@@ -7,7 +7,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed, wait
 
 class FstMap:
 
-    DIRECTIVES = ['PRESENT', 'PAST', 'VERB2VERB','SUFFIX','PREFIX','POSSESSIVE','VERB2NOUN','VERBPREFIX']
+    DIRECTIVES = ['PRESENT', 'PAST', 'VERB2VERB','NOUNSUFFIX','NOUNPREFIX','POSSESSIVE','VERB2NOUN','VERBSUFFIX','VERBPREFIX','NOUNPLURAL','ADJPLURAL','ADJPREFIX']
     SRC_DIR =  os.path.dirname(__file__)
     map = {}
     def __init__(self):
@@ -64,13 +64,14 @@ class FstMap:
           derivative = list(fst.generate(root))[0]
           g_derivative = Geez2Sera.sera2geez(derivative)
           #print(g_derivative)
-          score = GeezScore.exists(g_derivative)
+          #score = 0 if root == derivative else GeezScore.exists(g_derivative)
+          score =  GeezScore.exists(g_derivative)
           return g_derivative,score
 
 
 
 if __name__ == "__main__":
-    os.environ["SCORE_FILE"] = "ti_score.txt"
+    os.environ["SCORE_FILE"] = "resources/ti_score.txt"
     #print(json.dumps(FstMap().getMap()['SUFFIX'] , indent='\t'))
     print(json.dumps(FstMap().generate_all2('SUFFIX',"hademe"), indent='\t'))
 

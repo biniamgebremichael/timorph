@@ -1,0 +1,69 @@
+from gparser.FstMap import FstMap
+from gparser.Utils import *
+from Geez2Sera import Geez2Sera
+from GeezScore import GeezScore
+from persist.Germination import Germination
+from persist.DbPersist import DbPersistor
+import os
+
+import time
+
+from functools import lru_cache
+
+
+
+@lru_cache(maxsize=20)
+def runner(form, root):
+    fst = FstMap()
+    sera = Geez2Sera.geez2sera(root)
+    map = fst.generate_all2(form, sera)
+    return map
+    # cnt = count_success(map)
+    # counter[sera] = cnt
+    # store(root, json.dumps({"map":map}))
+
+
+def runOnBaseTense(word, pos, base_tense):
+    if(base_tense in forms[pos]):
+        for feature in forms[pos][base_tense]:
+            if(dbPersistor.existGermination(word,pos,base_tense,feature)<=0):
+                map = runner(feature, word)
+                map_ = [x.to_tuple() for x in Germination.objectify(word, base_tense, pos, feature, map)]
+                dbPersistor.addGermination(map_)
+                csvPrint2(word, base_tense + "_" + feature, map)
+            else:
+                print(word,pos,base_tense,'>',feature, 'already done')
+
+
+
+if __name__ == '__main__':
+
+    fst = FstMap()
+
+    cecece = [("ነገረ", 'V', "ROOT")]
+    forms = {
+        "V":
+            {
+                "ROOT": ["PRESENT", "PRESENT", "VERBPREFIX", "VERBSUFFIX", "VERB2VERB", "VERB2NOUN"],
+                "PRESENT": ["VERBPREFIX", "VERBSUFFIX", "VERB2VERB"],
+                "PAST": ["VERBPREFIX", "VERBSUFFIX", "VERB2VERB"],
+                "VERBPREFIX": ["VERBSUFFIX"],
+                "VERB2VERB": ["VERBSUFFIX"],
+                "VERB2NOUN": ["POSSESSIVE",  "NOUNSUFFIX", "NOUNPREFIX"],
+            },
+        "N":
+            {"ROOT": ["POSSESSIVE", "NOUNPLURAL", "NOUNSUFFIX", "NOUNPREFIX"],
+             },
+        "A": {"ROOT": ["ADJPLURAL", "ADJPREFIX"]}
+    }
+    dbPersistor = DbPersistor()
+    start_time = time.time()
+    for c in cecece:
+        for form in forms[c[1]][c[2]]:
+            runOnBaseTense(c[0],c[1],c[2])
+
+    germs = dbPersistor.getGerminations()
+    for germ in germs:
+        runOnBaseTense(germ.germinated, germ.pos, germ.feature)
+
+    print("Elapsed time (seconds):", time.time() - start_time)

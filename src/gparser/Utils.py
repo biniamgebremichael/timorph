@@ -1,5 +1,6 @@
 import re,json
 
+from persist.Germination import Germination
 
 def _add_vowel_I(input_str):
     # Define patterns for consonants and vowels
@@ -71,10 +72,27 @@ def count_success(maps):
     return count,len(unique)
 
 def csvPrint(map):
-    print(json.dumps(map, indent='\t'))
     for x, y in map.items():
         header = f"{x:<{15}}" + ',' + ','.join([f"{a:<{15}}"  for a in y['N']])
         print(header)
         for a, b in y.items():
             line = f"{a:<{15}}" + ',' + ','.join([f"{m:<{15}}"  for m in y[a] ])
             print(line)
+
+
+
+def csvPrint3(base, form, map):
+    result = []
+    for x, y in map.items():
+        for a, b in y.items():
+            if(len(list(y[a]) )>0):
+                Germination(base,form,x,a,y[a][0],y[1])
+                line = f"{base:<{15}}, {form:<{15}} ,  {x:<{15}} , {a:<{15}} , " +  ','.join([f"{m:<{15}}"  for m in y[a] ])
+                print(line)
+def csvPrint2(base, form, map):
+    for x, y in map.items():
+            for a, b in y.items():
+                if(len(list(y[a]) )>0):
+                    Germination
+                    line = f"{base:<{15}}, {form:<{15}} ,  {x:<{15}} , {a:<{15}} , " +  ','.join([f"{m:<{15}}"  for m in y[a] ])
+                    print(line)

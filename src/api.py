@@ -8,7 +8,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__  )
 counter = {}
-os.environ["SCORE_FILE"] = "ti_score.txt"
+os.environ["SCORE_FILE"] = "resources/ti_score.txt"
 
 
 def consumer(maps):

@@ -3,12 +3,12 @@ from Geez2Sera import Geez2Sera
 
 class GeezScore:
     _top_words = set()
-    _all_words = set()
+    _all_words = dict()
     _geez_3or4char = set()
     _geez_2char = set()
     _geez_cecece = set()
     _geez_caccc = set()
-    SRC_DIR =  os.path.dirname(__file__)
+    score_file = os.path.join(os.path.dirname(__file__),  "resources/ti_score.txt")
 
     @staticmethod
     def is_cecece(word):
@@ -27,15 +27,14 @@ class GeezScore:
     @staticmethod
     def init():
         if len(GeezScore._all_words) <= 0 :
-            score_file = os.environ["SCORE_FILE"]
-            f = open(os.path.join(GeezScore.SRC_DIR, score_file) , encoding='utf-8')
+            f = open(GeezScore.score_file, encoding='utf-8')
             lines = f.readlines()
 
             for l in lines:
                 ls = l.split()
                 if len(ls) == 2:
                     w = ls[0].strip()
-                    GeezScore._all_words.add(w)
+                    GeezScore._all_words[w]=int(ls[1])
                     if  int(ls[1])>100:
                         GeezScore._top_words.add(w)
                     if len(w) in [3,4]:
@@ -53,7 +52,7 @@ class GeezScore:
     @staticmethod
     def exists(word):
         GeezScore.init()
-        return int(word in GeezScore._all_words)
+        return GeezScore._all_words[word] if word in GeezScore._all_words else 0
 
     @staticmethod
     def get3or4char():

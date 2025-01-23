@@ -9,24 +9,38 @@ from pyfoma import FST
 class TestTFST(unittest.TestCase):
 
     variable = {'V': FST.re("[aeiouIE]"),
+                'K': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNZCPSQWT]"),
                 'C': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNZCPSQWAOT]")}
     def test_rule_generator(self):
         self.assertEqual("$^rewrite((e):(a) /  _ $C$V # ,longest = True, leftmost = True )", TFST._generate("-2e_a"))
     def testPyfoma(self):
-        CeCICaCV = "$^rewrite((I):a / $C e $C _ $C a $C $V # ) @ $^rewrite((a):I / $C e $C a $C _ $C $V # )  @ $^rewrite($V:(Iti) / $C e $C a $C I $C _ # )  @ $^rewrite($V:(atI) / $C a $C a $C I $C _ # )"
-        CICICiCV = "$^rewrite($V:(atI) / $C I $C I $C i $C _ #  )"
+        CeCICaCV = " $^rewrite((a):I / $C e $C I $C _ $C $V # )  @ $^rewrite($V:(Iti) / # $C e $C I $C I $C _ # )  @ $^rewrite((I):a / $C e $C _ $C I $C $V t $V # )"
+        _at = " $^rewrite($V:(atI) /   $C _ # ) "
+        _tat = " $^rewrite($V:(ItatI) /   $C _ # ) "
         CeCiNa= "$^rewrite(i:(ayI) / $C e $C _ $C a # ) @ $^rewrite(a:I / $C e $C a y I $C _ # )"
-        fst = FST.re(CeCICaCV+' @ '+CICICiCV+' @ '+CeCiNa,TestTFST.variable)
+        AeCINV= "$^rewrite($V:(eAI) / # A _ $C I $C $V # ) @ $^rewrite(I:a / # A e A I $C _ $C $V # )  @ $^rewrite($V:I / # A e A I $C a $C _ # )"
+        CeCICV= "$^rewrite('':(Aa) / # _ $C e $C I $C $V # ) @  $^rewrite('e':a / # A a $C _ $C I $C $V  ) @  $^rewrite($V:I /   A a $C a $C I $C _ # )"
+        CeCeCV= "$^rewrite('':(Aa) / # _ $C e $C e $C $V # ) @  $^rewrite('e':I / # A a $C _ $C e $C $V  ) @  $^rewrite($V:a /   A a $C I $C _ $C $V # )"
+        fst = FST.re(CeCICaCV ,TestTFST.variable)
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መጽሓፍ")))[0]), "መጻሕፍቲ")
-        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መዋእል")))[0]), "መዋእልቲ")
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መውዓሊ")))[0]), "መዋዕልቲ")
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መልኣኽ")))[0]), "መላእኽቲ")
-
+        fst = FST.re(_at ,TestTFST.variable)
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መዋእል")))[0]), "መዋእላት")
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("ሃዋርያ")))[0]), "ሃዋርያት")
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መዓልቲ")))[0]), "መዓልታት")
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("ምስጢር")))[0]), "ምስጢራት")
-        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መዓልቲ")))[0]), "መዓልትቲ")
-
+        fst = FST.re(_tat ,TestTFST.variable)
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("ነጥቢ")))[0]), "ነጥብታት")
+        fst = FST.re( CeCiNa ,TestTFST.variable)
         self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("መኪና")))[0]), "መካይን")
+        #fst = FST.re( CeCaCVCV+' @ '+CICICiCV+' @ '+CeCiNa+' @ '+AeCINV + '@' + CeCICV+ '@' + CeCeCV ,TestTFST.variable)
+        fst = FST.re( AeCINV ,TestTFST.variable)
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("እልፊ")))[0]), "አእላፍ")
+        fst = FST.re( CeCICV ,TestTFST.variable)
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("በትሪ")))[0]), "ኣባትር")
+        fst = FST.re( CeCeCV ,TestTFST.variable)
+        self.assertEqual(Geez2Sera.sera2geez(list(fst.generate(Geez2Sera.geez2sera("ፈረስ")))[0]), "ኣፍራስ")
 
 
     def test_generate(self):

@@ -4,13 +4,17 @@ from Geez2Sera import Geez2Sera
 from GeezScore import GeezScore
 import os
 
+
 import time
 
 
+def getWords(file):
+    f = open(file, encoding='utf-8')
+    return [l.strip() for l in f.readlines()]
 def consumer(src, x):
     geez = Geez2Sera.sera2geez(x)
-    score = GeezScore.exists(geez)
-    if(score>0):
+    if(not geez == src):
+        score = GeezScore.exists(geez)
         if(not geez in counter[src]):
             counter[src][geez] = 0
         counter[src][geez] =  counter[src][geez] + score
@@ -44,6 +48,7 @@ def store(geez,cnt):
 def runner(fst, form,root):
     sera = Geez2Sera.geez2sera(root)
     map = fst.generate_all2(form, sera )
+    print(map)
     cnt = count_success(map)
     counter[sera] = cnt
     store(root,cnt)
@@ -52,21 +57,22 @@ def runner(fst, form,root):
 if __name__ == '__main__':
 
     fst = FstMap()
-    os.environ["SCORE_FILE"] = "ti_score.txt"
+    os.environ["SCORE_FILE"] = "resources\\ti_score.txt"
 
     counter = {}
 
-    cecece =  ["ነገረ","ከበረ"]
+    #cecece =  ["ነገረ","ከበረ"]
     #cecece =  ["ከልቢ","ድሙ",'ምስራሕ']
     #cecece = GeezScore.get_cecece()
     GeezScore.init()
-    cecece = GeezScore._geez_caccc
+    #cecece = GeezScore._geez_caccc
+    cecece = getWords("D:\projects\python\ex1\geezexperience_definition\\tigrinyaAdjective.txt")
     print(len(cecece))
     print(cecece)
 
     start_time = time.time()
     for x in cecece :
-        form = "POSSESSIVE"
+        form = "ADJECTIVE"
         runner(fst,form, x)
 
     # print(json.dumps(map,indent='\t'))

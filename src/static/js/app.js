@@ -15,7 +15,7 @@ myApp.service('dataService', function($http) {
 
 myApp.controller('generateCtrl', function($scope, dataService) {
     $scope.data = [];
-    $scope.nounexample=["ዕድመ","መስተ","ድሙ","ኣሃዱ","ደቂ","ወለዲ","መኪና","ሬሳ","ግዜ","ውሳኔ","ቤት","ግቡእ","ኣቦ","ማዕጾ"]
+    $scope.nounexample=["ዕድመ","መስተ","ድሙ","ኣሃዱ","ደቂ","ወለዲ","ከልቢ","መዓልቲ","መኪና","ሬሳ","ግዜ","ውሳኔ","ቤት","መጽሓፍ","ፈረስ","ከረን","ኣቦ","ማዕጾ"]
     $scope.action = "refresh";
     $scope.records = [
             "Alfreds Futterkiste",

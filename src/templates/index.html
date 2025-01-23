@@ -23,9 +23,13 @@
                     <option value="VERB2VERB">V - VERB to VERB</option>
                     <option value="VERB2NOUN">V - VERB to NOUN</option>
                     <option value="VERBPREFIX">V - PREFIX</option>
-                    <option value="SUFFIX">V/N - SUFFIX</option>
-                    <option value="PREFIX">N - PREFIX</option>
+                    <option value="VERBSUFFIX">V - SUFFIX</option>
+                    <option value="NOUNSUFFIX">N - SUFFIX</option>
+                    <option value="NOUNPREFIX">N - PREFIX</option>
                     <option value="POSSESSIVE">N - POSSESSIVE</option>
+                    <option value="NOUNPLURAL">N - PLURAL</option>
+                    <option value="ADJPLURAL">Adj - PLURAL</option>
+                    <option value="ADJPREFIX">Adj - PREFIX</option>
                 </select>
 
             </div>
@@ -52,7 +56,7 @@
 
                 <td><span ng-bind="key"></span></td>
                 <td ng-repeat="(x,y) in value">
-                    <span ng-class="{'text-success':y[1]>0,'text-muted':y[1]<=0  }" ng-bind="y[0]" ng-click="newword(y[0])"></span></td>
+                    <span ng-class="{'text-info':y[1]>0 && y[1]<=5,'text-primary':y[1]>5 ,'text-success':y[1]>50,'text-muted':y[1]<=0  }" ng-bind="y[0]" ng-click="newword(y[0])"></span> <span ng-bind="y[1]"></span></td>
 
 
         </table>
@@ -61,7 +65,10 @@
         <b>Possessive examples</b>
   <ul class="list list-inline px-4">
     <li class="list-inline-item" ng-repeat="x in nounexample"><a  ng-click="refresh('POSSESSIVE',x)"  ng-bind="x"> </a></li>
-  </ul>
+  </ul><b>plural examples</b>
+        <ul class="list list-inline px-4">
+            <li class="list-inline-item" ng-repeat="x in nounexample"><a  ng-click="refresh('NOUNPLURAL',x)"  ng-bind="x"> </a></li>
+        </ul>
     </div>
 </section>
 </body>
