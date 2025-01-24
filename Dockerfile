@@ -5,5 +5,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
 WORKDIR /
 RUN mkdir /src
 ADD src  /src/
-COPY ti_score.txt  /src/
 ENTRYPOINT ["python3", "/src/api.py"]

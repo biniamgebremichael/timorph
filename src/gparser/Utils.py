@@ -1,6 +1,5 @@
-import re,json
+import re ,os
 
-from persist.Germination import Germination
 
 def _add_vowel_I(input_str):
     # Define patterns for consonants and vowels
@@ -79,20 +78,19 @@ def csvPrint(map):
             line = f"{a:<{15}}" + ',' + ','.join([f"{m:<{15}}"  for m in y[a] ])
             print(line)
 
+def getNouns():
+    return getInput("nouns","N")
+def getVerbs():
+    return getInput("verbs","V")
+def getInput(pos,posid):
+    score_file = os.path.join(os.path.dirname(__file__),  f"../resources/{pos}.txt")
+    f = open(score_file, encoding='utf-8')
+    lines = f.readlines()
+    return [(l.strip(),posid,"ROOT") for l in lines]
 
-
-def csvPrint3(base, form, map):
-    result = []
+def csvPrint2(base, form, map):
     for x, y in map.items():
         for a, b in y.items():
             if(len(list(y[a]) )>0):
-                Germination(base,form,x,a,y[a][0],y[1])
                 line = f"{base:<{15}}, {form:<{15}} ,  {x:<{15}} , {a:<{15}} , " +  ','.join([f"{m:<{15}}"  for m in y[a] ])
                 print(line)
-def csvPrint2(base, form, map):
-    for x, y in map.items():
-            for a, b in y.items():
-                if(len(list(y[a]) )>0):
-                    Germination
-                    line = f"{base:<{15}}, {form:<{15}} ,  {x:<{15}} , {a:<{15}} , " +  ','.join([f"{m:<{15}}"  for m in y[a] ])
-                    print(line)

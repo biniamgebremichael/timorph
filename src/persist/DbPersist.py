@@ -10,7 +10,7 @@ class DbPersistor:
         with sqlite3.connect(self.db_file) as conn:
             cursor = conn.cursor()
             cursor.execute(
-            "CREATE TABLE IF NOT EXISTS germination (ID INTEGER PRIMARY KEY AUTOINCREMENT, BASE TEXT, TENSE TEXT, POS TEXT,FEATURE TEXT,SUBJECT TEXT,OBJECT TEXT, GERMINATED TEXT , FREQUENCY INTEGER )")
+            "CREATE TABLE IF NOT EXISTS germination (ID INTEGER PRIMARY KEY AUTOINCREMENT, PARENT TEXT, BASE TEXT, TENSE TEXT, POS TEXT,FEATURE TEXT,SUBJECT TEXT,OBJECT TEXT, GERMINATED TEXT , FREQUENCY INTEGER )")
 
 
 
@@ -26,13 +26,13 @@ class DbPersistor:
     def getGerminations(self):
         with sqlite3.connect(self.db_file) as conn:
             cursor = conn.cursor()
-            cus = cursor.execute("SELECT BASE , TENSE, POS, FEATURE, SUBJECT, OBJECT, GERMINATED, FREQUENCY FROM  germination ")
+            cus = cursor.execute("SELECT PARENT, BASE , TENSE, POS, FEATURE, SUBJECT, OBJECT, GERMINATED, FREQUENCY FROM  germination ")
             fetchall = cus.fetchall()
-        return [Germination(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7] ) for row in fetchall]
+        return [Germination(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7] ,row[7]) for row in fetchall]
     def addGermination (self, germinations):
         with sqlite3.connect(self.db_file) as conn:
             cursor = conn.cursor()
-            cursor.executemany('INSERT INTO germination ( BASE , TENSE,POS, FEATURE, SUBJECT, OBJECT, GERMINATED, FREQUENCY) VALUES (?, ?,?, ?, ?, ?, ?, ? )',germinations)
+            cursor.executemany('INSERT INTO germination ( PARENT, BASE , TENSE,POS, FEATURE, SUBJECT, OBJECT, GERMINATED, FREQUENCY) VALUES (?, ?,?, ?, ?, ?, ?, ?, ? )',germinations)
         return cursor.lastrowid
 
 if __name__ == "__main__":

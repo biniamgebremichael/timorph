@@ -26,11 +26,12 @@ def consumer(maps):
 
 @app.route('/')
 def root():
-    return render_template('index.html')
+    f = open(os.path.join(os.path.dirname(__file__), 'static/index.html'), mode="r", encoding='utf-8')
+    return app.response_class(response=str(f.read()),status=200, mimetype="text/html")
 @app.route('/<verb>/<src>')
 def past_tense(verb, src):
     fst = FstMap.FstMap()
-    result = fst.generate_all2(verb.upper(), Geez2Sera.geez2sera(src))
+    result = fst.generate_all2(verb.upper(), Geez2Sera.geez2sera(src),False)
     total, counter,unique = consumer(result)
     data = {"map": result, "count_unique":  unique, "count_all": counter, "total": total}
     return app.response_class(

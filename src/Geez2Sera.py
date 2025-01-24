@@ -6,7 +6,7 @@ class Geez2Sera:
     @staticmethod
     def init():
         if len(Geez2Sera._geez_sera) <= 0:
-            f = open(os.path.join(Geez2Sera.SRC_DIR, "sera.txt"), encoding='utf-8')
+            f = open(os.path.join(Geez2Sera.SRC_DIR, "resources/sera.txt"), encoding='utf-8')
             lines = f.readlines()
 
             for l in lines:
