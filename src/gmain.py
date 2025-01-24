@@ -1,10 +1,9 @@
 from gparser.FstMap import FstMap
 from gparser.Utils import *
 from Geez2Sera import Geez2Sera
-from GeezScore import GeezScore
 from persist.Germination import Germination
 from persist.DbPersist import DbPersistor
-import os
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import time
 
@@ -23,7 +22,9 @@ def runner(form, root):
     # store(root, json.dumps({"map":map}))
 
 
-def runOnBaseTense(word, pos, base_tense):
+def runOnBaseTense(word, pos, base_tense,forms):
+
+    dbPersistor = DbPersistor()
     if(base_tense in forms[pos]):
         for feature in forms[pos][base_tense]:
             if(dbPersistor.existGermination(word,pos,base_tense,feature)<=0):
@@ -40,7 +41,7 @@ if __name__ == '__main__':
 
     fst = FstMap()
 
-    cecece = [("ነገረ", 'V', "ROOT")]
+    cecece = [("ሃገረ", 'V', "ROOT")]
     forms = {
         "V":
             {
@@ -58,12 +59,22 @@ if __name__ == '__main__':
     }
     dbPersistor = DbPersistor()
     start_time = time.time()
-    for c in cecece:
-        for form in forms[c[1]][c[2]]:
-            runOnBaseTense(c[0],c[1],c[2])
 
+    futures = {}
+    with ProcessPoolExecutor(max_workers=5) as executor:
+        for c in cecece:
+            for form in forms[c[1]][c[2]]:
+                futures[executor.submit(runOnBaseTense,c[0],c[1],form,forms)]= c
+    for future in as_completed(futures):
+        future.result()
+
+
+    futures = {}
     germs = dbPersistor.getGerminations()
-    for germ in germs:
-        runOnBaseTense(germ.germinated, germ.pos, germ.feature)
+    with ProcessPoolExecutor(max_workers=5) as executor:
+        for germ in germs:
+                futures[executor.submit(runOnBaseTense,germ.germinated, germ.pos, germ.feature,forms)]= germ
 
+    for future in as_completed(futures):
+        future.result()
     print("Elapsed time (seconds):", time.time() - start_time)
