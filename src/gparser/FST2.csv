@@ -9,6 +9,18 @@ YOU_SM,e_Ika,e_Ikani,e_Ikayo,e_Ikaya,e_Ikana,e_IkayomI,e_IkayenI,e_Ikayo,e_Ikaya
 YOU_SF,e_Iki,e_IkIni,e_IkIyo,e_IkIya,e_IkIna,e_IkIyomI,e_IkIyenI,e_Ikiyo,e_Ikiya,e_IkIyomI,e_IkIyenI
 YOU_PM,e_IkumI,e_IkumIni,e_Ikumo,e_Ikuma,e_umIna,e_IkumomI,e_IkumenI,e_IkumIwo,e_IkumIwa,e_IkumomI,e_IkumenI
 YOU_PF,_kInI,e_IkInani,e_IkInIAo,e_IkInIAa,e_IkInana,e_IkInomI,e_IkInIAenI,e_IkInIAo,e_IkIyenI,e_IkInIAomI,e_IkInIAenI
+VERBY,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
+I,  0_yI @ -2$V_I @ $V_I,0_yI @ -2$V_I @ $V_I,0_yI @ -2$V_I @ $V_o,0_yI @ -2$V_I @ $V_a,0_yI @ -2$V_I @ $V_I,0_yI @ -2$V_I @ $V_omI,0_yI @ -2$V_I @ $V_enI,0_yI @ -2$V_I @ $V_eka,0_yI @ -2$V_I @ $V_eki,0_yI @ -2$V_I @ $V_ekumI,0_yI @ -2$V_I @ $V_ekInI
+HE,0_yI @ -2$V_I @ $V_I,0_yI @ -2$V_I @ $V_eleyI,0_yI @ -2$V_I @ $V_elu,0_yI @ -2$V_I @ $V_ela,0_yI @ -2$V_I @ $V_elIna,0_yI @ -2$V_I @ $V_elomI,0_yI @ -2$V_I @ $V_elenI,0_yI @ -2$V_I @ $V_elu,0_yI @ -2$V_I @ $V_ela,0_yI @ -2$V_I @ $V_elomI,0_yI @ -2$V_I @ $V_elenI
+SHE,0_tI @ -2$V_I @ $V_I,0_tI @ -2$V_I @ $V_I,0_tI @ -2$V_I @ $V_o,0_tI @ -2$V_I @ $V_a,0_tI @ -2$V_I @ $V_I,0_tI @ -2$V_I @ $V_omI,0_tI @ -2$V_I @ $V_enI,0_tI @ -2$V_I @ $V_eka,0_tI @ -2$V_I @ $V_eki,0_tI @ -2$V_I @ $V_ekumI,0_tI @ -2$V_I @ $V_ekInI
+WE,  0_nI @ -2$V_I @ $V_I,0_nI @ -2$V_I @ $V_I,0_nI @ -2$V_I @ $V_o,0_nI @ -2$V_I @ $V_a,0_nI @ -2$V_I @ $V_I,0_nI @ -2$V_I @ $V_omI,0_nI @ -2$V_I @ $V_enI,0_nI @ -2$V_I @ $V_eka,0_nI @ -2$V_I @ $V_eki,0_nI @ -2$V_I @ $V_ekumI,0_nI @ -2$V_I @ $V_ekInI
+THEY_M,0_yI @ -2$V_I @ $V_u,0_yI @ -2$V_I @ $V_uni,0_yI @ -2$V_I @ $V_uwo,0_yI @ -2$V_I @ $V_uwa,0_yI @ -2$V_I @ $V_una,0_yI @ -2$V_I @ $V_uwomI,0_yI @ -2$V_I @ $V_IwenI,0_yI @ -2$V_I @ $V_uKa,0_yI @ -2$V_I @ $V_uKi,0_yI @ -2$V_I @ $V_IKumI,0_yI @ -2$V_I @ $V_IKInI
+THEY_F,0_yI @ -2$V_I @ $V_a,0_yI @ -2$V_I @ $V_ani,0_yI @ -2$V_I @ $V_IAo,0_yI @ -2$V_I @ $V_IAa,0_yI @ -2$V_I @ $V_ana,0_yI @ -2$V_I @ $V_IAomI,0_yI @ -2$V_I @ $V_eAenI,0_yI @ -2$V_I @ $V_aKa,0_yI @ -2$V_I @ $V_aKi,0_yI @ -2$V_I @ $V_aKumI,0_yI @ -2$V_I @ $V_aKInI
+YOU_SM,0_tI @ -2$V_I @ $V_I,0_tI @ -2$V_I @ $V_eleyI,0_tI @ -2$V_I @ $V_elu,0_tI @ -2$V_I @ $V_ela,0_tI @ -2$V_I @ $V_elIna,0_tI @ -2$V_I @ $V_elomI,0_tI @ -2$V_I @ $V_elenI,0_tI @ -2$V_I @ $V_elu,0_tI @ -2$V_I @ $V_ela,0_tI @ -2$V_I @ $V_elomI,0_tI @ -2$V_I @ $V_elenI
+YOU_SF,0_tI @ -2$V_I @ $V_i,0_tI @ -2$V_I @ $V_IleyI,0_tI @ -2$V_I @ $V_Ilu,0_tI @ -2$V_I @ $V_Ila,0_tI @ -2$V_I @ $V_IlIna,0_tI @ -2$V_I @ $V_IlomI,0_tI @ -2$V_I @ $V_IlenI,0_tI @ -2$V_I @ $V_Ilu,0_tI @ -2$V_I @ $V_Ila,0_tI @ -2$V_I @ $V_IlomI,0_tI @ -2$V_I @ $V_IlenI
+YOU_PM,0_tI @ -2$V_I @ $V_u,0_tI @ -2$V_I @ $V_uleyI,0_tI @ -2$V_I @ $V_ulu,0_tI @ -2$V_I @ $V_ula,0_tI @ -2$V_I @ $V_ulIna,0_tI @ -2$V_I @ $V_ulomI,0_tI @ -2$V_I @ $V_ulenI,0_tI @ -2$V_I @ $V_ulu,0_tI @ -2$V_I @ $V_ula,0_tI @ -2$V_I @ $V_ulomI,0_tI @ -2$V_I @ $V_ulenI
+YOU_PM2,0_yI @ -2$V_I @ $V_u,0_yI @ -2$V_I @ $V_uleyI,0_yI @ -2$V_I @ $V_ulu,0_yI @ -2$V_I @ $V_ula,0_yI @ -2$V_I @ $V_ulIna,0_yI @ -2$V_I @ $V_ulomI,0_yI @ -2$V_I @ $V_ulenI,0_yI @ -2$V_I @ $V_ulu,0_yI @ -2$V_I @ $V_ula,0_yI @ -2$V_I @ $V_ulomI,0_yI @ -2$V_I @ $V_ulenI
+YOU_PF,0_tI @ -2$V_I @ $V_a,0_tI @ -2$V_I @ $V_aleyI,0_tI @ -2$V_I @ $V_alu,0_tI @ -2$V_I @ $V_IAa,0_tI @ -2$V_I @ $V_ana,0_tI @ -2$V_I @ $V_IAomI,0_tI @ -2$V_I @ $V_IAenI,0_tI @ -2$V_I @ $V_eka,0_tI @ -2$V_I @ $V_aki,0_tI @ -2$V_I @ $V_aKumI,0_tI @ -2$V_I @ $V_aKInI
 PAST,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
 I,-2e_i,-2e_i,-2e_i @ _yo,-2e_i @ _ya,-2e_i,-2e_i @ _yomI,-2e_i @ _yenI,-2e_i @ _ka,-2e_i @ _ki,-2e_i @ _kumI,-2e_i @ _kInI
 HE,-2e_i @ e_Ika,-2e_i @ e_uni,-2e_i @ e_uwo,-2e_i @ e_Iwa,-2e_i @ _na,-2e_i @ e_IwomI,-2e_i @ e_IwenI,-2e_i @ e_uka,-2e_i @ e_uki,-2e_i @ e_IkumI,-2e_i @ e_I @ _kInI
@@ -19,7 +31,6 @@ THEY_F,-2e_i @ _nI,-2e_i @ _nani,-2e_i @ _nIAo,-2e_i @ _neAa,-2e_i @ _nana,-2e_i
 YOU_SM,-2e_i @ e_Ika,-2e_i @ e_Ikani,-2e_i @ e_Ikayo,-2e_i @ e_Ikaya,-2e_i @ e_Ikana,-2e_i @ e_IkayomI,-2e_i @ e_IkayenI,-2e_i @ e_Ikayo,-2e_i @ e_Ikaya,-2e_i @ e_InakumI,-2e_i @ e_IkayenI
 YOU_SF,-2e_i @ e_Iki,-2e_i @ e_IkIni,-2e_i @ e_IkIyo,-2e_i @ e_IkIya,-2e_i @ e_IkIna,-2e_i @ e_IkiyomI,-2e_i @ e_IkIyenI,-2e_i @ e_atIka,-2e_i @ e_IkIya,-2e_i @ e_IkIyomI,-2e_i @ e_IkIyenI
 YOU_PM,-2e_i @ e_IkumI,-2e_i @ e_IkumIni,-2e_i @ e_Ikumo,-2e_i @ e_IkumIwa,-2e_i @ e_Ikumuna,-2e_i @ e_IkumomI,-2e_i @ e_IkumenI,-2e_i @ e_IkumIwo,-2e_i @ e_IkumIwa,-2e_i @ e_IkumomI,-2e_i @ e_IkumenI
-YOU_PF,-2e_i @ e_IkInI,-2e_i @ e_IkInani,-2e_i @ e_IkInIAo,-2e_i @ e_IkInIAa,-2e_i @ e_IkInana,-2e_i @ e_IkInIAomI,-2e_i @ e_IkInIAenI,-2e_i @ e_IkInIAo,-2e_i @ e_IkInIAa,-2e_i @ e_IkInIAomI,-2e_i @ e_IkInIAenI
 POSSESSIVE,N,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
 I,_,I_eyI @ u_oyI @ E_EyI @ a_ayI @ i_eyI @ e_eyI @ o_oyI ,u_IAu @ E_EAu @ a_aAu @ I_u @ i_u @ e_eAu @ o_oAu,a_aAa @ u_uAa @ E_EAa @ I_a @ i_a @ e_eAa @ o_oAa,i_I @ _na,I_omI @ u_uAomI @ E_EAomI @ a_aAomI @ i_omI @ e_EAomI @ o_oAomI,I_enI @ u_uAenI @ E_EAenI @ a_aAenI @ i_enI @ e_EAenI @ o_oAenI,a_aKa @ I_Ika @ i_IKa @ u_uKa @ E_EKa @ o_oKa @ e_eKa,i_IKi @ I_Iki @ a_aKi @ u_uKi @ E_EKi @ o_oKi @ e_eKi,I_IkumI @ a_aKumI @ i_IKumI @ u_uKumI @ E_EKumI @ o_oKumI @ e_eKumI,I_IkInI @ a_aKInI @ i_IKInI @ u_uKInI @ E_EKInI @ o_oKInI @ e_eKInI
 NOUNSUFFIX,N,KO,SI,DO,KE,MO
@@ -28,10 +39,12 @@ NOUNPREFIX,N,B,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-,እንተዘይ-, ኣ
 I,0_nI,0_bI, 0_zI, 0_zeyI, 0_nIzeyI, 0_kemIzeyI, 0_AayI
 VERBSUFFIX,N,KO,SI,DO,KE,MO
 I,_nI,_ko,_si,_do,_Ke,_mo
-VERBPREFIX,N,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-,እንተዘይ-, ኣይ-, ስለ- ,እንተ-, ምስ- ,ስለዝ- ,እና- ,ከምዝ-, ምስዝ- , ም-
-I,_,0_te, 0_zI, 0_zeyI, 0_nIzeyI, 0_kemIzeyI,0_AInItezeyI, 0_AayI, 0_sIle, 0_AInIte, 0_mIsI, 0_sIlezI, 0_AIna, 0_kemIzI,0_mIsIzI, 0_mI
-VERB2VERB,N,INFINITIVE
-I, 0tI_ @ 0q_Q @ 0k_K @ 2q_Q @ 2K_k @ 1e_I @ 1a_I @ 0_Aa, 0_te
+VERBPREFIXPRESENT,N,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-,እንተዘይ-, ኣይ-, እንተ-, ስለዝ- ,እና- ,ከምዝ-, ምስዝ- , ም-
+I,_,0_te, 0_zI, 0_zeyI, 0_nIzeyI, 0_kemIzeyI,0_AInItezeyI, 0_AayI,  0_AInIte, 0_sIlezI, 0_AIna, 0_kemIzI,0_mIsIzI, 0_mI
+VERBPREFIXPAST,N,እንተዘይ-, ኣይ-, እንተ-
+I,_,0_AInItezeyI, 0_AayI,  0_AInIte
+PASSIVE,N
+I, 0tI_ @ 0q_Q @ 0k_K @ 2q_Q @ 2K_k @ 1e_I @ 1a_I @ 0_Aa
 VERB2NOUN,N,DIRECTIVE,ADJECTIVE
 I, 1e_I @ 1a_I @ -2$e_a @ -2$I_a @e_I @   2K_k @ 0_mI, 0_AI @ -2$V_I @ $V_I, 0_tI @ -2$V_I @ $V_I
 NOUNPLURAL,N,_at,   v_Itat, tat, CeCiNa,AeCINV,CeCICV,CeCeCV

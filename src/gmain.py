@@ -21,15 +21,27 @@ def runner(form, root):
     # store(root, json.dumps({"map":map}))
 
 
-def runOnBaseTense(parentroot, word, pos, base_tense, forms):
+def runOnBaseTense2(parentroot, word, pos, base_tense, forms):
+    dbPersistor = DbPersistor()
+    for feature in forms:
+        if (dbPersistor.existGermination(word, pos, base_tense, feature) <= 0):
+            map = runner(feature, word)
+            map_ = [x.to_tuple() for x in Germination.objectify(parentroot, word, base_tense, pos, feature, map)]
+            dbPersistor.addGermination(map_)
+            csvPrint2(word, base_tense + "_" + feature, map)
+        else:
+            print(word, pos, base_tense, '>', feature, 'already done')
+
+
+def runOnBaseTense(parentroot,parentbase, word, pos, base_tense, forms):
     dbPersistor = DbPersistor()
     if (base_tense in forms[pos]):
         for feature in forms[pos][base_tense]:
-            if (dbPersistor.existGermination(word, pos, base_tense, feature) <= 0):
+            if (dbPersistor.existGermination(word, pos, parentbase, feature) <= 0):
                 map = runner(feature, word)
-                map_ = [x.to_tuple() for x in Germination.objectify(parentroot, word, base_tense, pos, feature, map)]
+                map_ = [x.to_tuple() for x in Germination.objectify(parentroot,parentbase, word,  pos, feature, map)]
                 dbPersistor.addGermination(map_)
-                csvPrint2(word, base_tense + "_" + feature, map)
+                csvPrint2(word, parentbase + "_" + feature, map)
             else:
                 print(word, pos, base_tense, '>', feature, 'already done')
 
@@ -38,15 +50,17 @@ if __name__ == '__main__':
 
     fst = FstMap()
 
-    cecece = getVerbs()
+    cecece =  getVerbs()
     forms = {
         "V":
             {
-                "ROOT": ["PRESENT", "PAST", "VERBPREFIX", "VERBSUFFIX", "VERB2VERB", "VERB2NOUN"],
-                "PRESENT": ["VERBPREFIX", "VERBSUFFIX", "VERB2VERB"],
-                "PAST": ["VERBPREFIX", "VERBSUFFIX", "VERB2VERB"],
-                "VERBPREFIX": ["VERBSUFFIX"],
-                "VERB2VERB": ["VERBSUFFIX"],
+                "ROOT": ["PAST", "PRESENT", "VERBPREFIXPAST", "VERBSUFFIX", "PASSIVE", "VERB2NOUN","VERBY"],
+                "PASSIVE": ["PAST", "PRESENT"],
+                "PAST": ["VERBPREFIXPAST", "VERBSUFFIX" ],
+                "VERBY": ["VERBPREFIXPAST", "VERBSUFFIX" ],
+                "PRESENT": ["VERBPREFIXPRESENT", "VERBSUFFIX" ],
+                "VERBPREFIXPAST": ["VERBSUFFIX"],
+                "VERBPREFIXPRESENT": ["VERBSUFFIX"],
                 "VERB2NOUN": ["POSSESSIVE", "NOUNSUFFIX", "NOUNPREFIX"],
             },
         "N":
@@ -60,7 +74,7 @@ if __name__ == '__main__':
     futures = {}
     with ProcessPoolExecutor(max_workers=5) as executor:
         for c in cecece:
-            futures[executor.submit(runOnBaseTense, c[0], c[0], c[1], c[2], forms)] = c
+            futures[executor.submit(runOnBaseTense, c[0], c[2], c[0], c[1], c[2], forms)] = c
     for future in as_completed(futures):
         future.result()
 
@@ -68,8 +82,10 @@ if __name__ == '__main__':
     germs = dbPersistor.getGerminations()
     with ProcessPoolExecutor(max_workers=5) as executor:
         for germ in germs:
-            futures[executor.submit(runOnBaseTense, germ.parent, germ.germinated, germ.pos, germ.feature, forms)] = germ
+            parent_base = germ.basetense +'.' +germ.feature + '-' + germ.subject + '+' + germ.object
+            futures[executor.submit(runOnBaseTense, germ.parent, parent_base, germ.germinated, germ.pos, germ.feature, forms)] = germ
 
     for future in as_completed(futures):
         future.result()
-    print("Elapsed time (seconds):", time.time() - start_time)
+    time_start_time = time.time() - start_time
+    print("Elapsed time ", time_start_time, 'sec - ', time_start_time/60, 'min - ', time_start_time/3600, 'hrs - ')

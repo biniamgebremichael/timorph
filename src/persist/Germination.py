@@ -4,7 +4,7 @@ class Germination:
     def __init__(self,parentroot,base,tensebase,pos,feature,subject,object,germinated,frequency):
         self.parent = parentroot
         self.base = base
-        self.basetense = tensebase
+        self.basetense =  tensebase
         self.pos = pos
         self.feature = feature
         self.subject = subject
@@ -14,12 +14,12 @@ class Germination:
 
 
     @staticmethod
-    def objectify(parentroot, base, basetense,pos, feature, map):
+    def objectify(parentroot,parentbase, base, pos, feature, map):
         objectified = []
         for x, y in map.items():
             for a, b in y.items():
                 if(len(list(y[a]) )>0):
-                    objectified.append(Germination(parentroot,base, basetense, pos,feature, x, a, y[a][0], y[a][1]))
+                    objectified.append(Germination(parentroot,base, parentbase, pos,feature, x, a, y[a][0], y[a][1]))
         return objectified
 
     def to_json(obj):
