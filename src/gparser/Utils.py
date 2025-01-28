@@ -86,7 +86,7 @@ def getInput(pos,posid):
     score_file = os.path.join(os.path.dirname(__file__),  f"../resources/{pos}.txt")
     f = open(score_file, encoding='utf-8')
     lines = f.readlines()
-    return [(l.strip(),posid,"ROOT") for l in lines]
+    return [(l.strip(),posid ) for l in lines]
 
 def csvPrint2(base, form, map):
     for x, y in map.items():

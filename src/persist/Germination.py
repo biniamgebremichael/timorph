@@ -22,6 +22,9 @@ class Germination:
                     objectified.append(Germination(parentroot,base, parentbase, pos,feature, x, a, y[a][0], y[a][1]))
         return objectified
 
+    @staticmethod
+    def rootGermination(root,pos):
+        return Germination(root,root,"",pos,"ROOT","","",root,0)
     def to_json(obj):
         return json.dumps(obj.__dict__)
 

@@ -41,16 +41,28 @@ def runOnBaseTense(parentroot,parentbase, word, pos, base_tense, forms):
                 map = runner(feature, word)
                 map_ = [x.to_tuple() for x in Germination.objectify(parentroot,parentbase, word,  pos, feature, map)]
                 dbPersistor.addGermination(map_)
-                csvPrint2(word, parentbase + "_" + feature, map)
+                print(".",end='') #csvPrint2(word, parentbase + "_" + feature, map)
             else:
                 print(word, pos, base_tense, '>', feature, 'already done')
+
+
+def run(germs):
+    futures = {}
+    with ProcessPoolExecutor(max_workers=5) as executor:
+        for germ in germs:
+            parent_base = germ.feature if germ.feature=="ROOT" else germ.basetense + '.' + germ.feature + '-' + germ.subject + '+' + germ.object
+            futures[executor.submit(runOnBaseTense, germ.parent, parent_base, germ.germinated, germ.pos, germ.feature,
+                                    forms)] = germ
+    for future in as_completed(futures):
+        future.result()
 
 
 if __name__ == '__main__':
 
     fst = FstMap()
 
-    cecece =  getVerbs()
+    #cecece = [Germination.rootGermination("ሓተተ","V")]
+    cecece = [Germination.rootGermination(x[0],x[1]) for x in getVerbs()[0:10]]
     forms = {
         "V":
             {
@@ -70,22 +82,9 @@ if __name__ == '__main__':
     }
     dbPersistor = DbPersistor()
     start_time = time.time()
+    run(cecece)
+    run(dbPersistor.getGerminations())
+    run(dbPersistor.getGerminations())
 
-    futures = {}
-    with ProcessPoolExecutor(max_workers=5) as executor:
-        for c in cecece:
-            futures[executor.submit(runOnBaseTense, c[0], c[2], c[0], c[1], c[2], forms)] = c
-    for future in as_completed(futures):
-        future.result()
-
-    futures = {}
-    germs = dbPersistor.getGerminations()
-    with ProcessPoolExecutor(max_workers=5) as executor:
-        for germ in germs:
-            parent_base = germ.basetense +'.' +germ.feature + '-' + germ.subject + '+' + germ.object
-            futures[executor.submit(runOnBaseTense, germ.parent, parent_base, germ.germinated, germ.pos, germ.feature, forms)] = germ
-
-    for future in as_completed(futures):
-        future.result()
     time_start_time = time.time() - start_time
     print("Elapsed time ", time_start_time, 'sec - ', time_start_time/60, 'min - ', time_start_time/3600, 'hrs - ')
