@@ -33,13 +33,13 @@ def runOnBaseTense2(parentroot, word, pos, base_tense, forms):
             print(word, pos, base_tense, '>', feature, 'already done')
 
 
-def runOnBaseTense(parentroot,parentbase, word, pos, base_tense, forms):
+def runOnBaseTense(parentroot,short_path,long_path, word, pos, base_tense, forms):
     dbPersistor = DbPersistor()
     if (base_tense in forms[pos]):
         for feature in forms[pos][base_tense]:
-            if (dbPersistor.existGermination(word, pos, parentbase, feature) <= 0):
+            if (dbPersistor.existGermination(word, pos,  short_path, feature) <= 0):
                 map = runner(feature, word)
-                map_ = [x.to_tuple() for x in Germination.objectify(parentroot,parentbase, word,  pos, feature, map)]
+                map_ = [x.to_tuple() for x in Germination.objectify(parentroot,short_path,long_path, word,  pos, feature, map)]
                 dbPersistor.addGermination(map_)
                 print(".",end='') #csvPrint2(word, parentbase + "_" + feature, map)
             else:
@@ -50,8 +50,9 @@ def run(germs):
     futures = {}
     with ProcessPoolExecutor(max_workers=5) as executor:
         for germ in germs:
-            parent_base = germ.feature if germ.feature=="ROOT" else germ.basetense + '.' + germ.feature + '-' + germ.subject + '+' + germ.object
-            futures[executor.submit(runOnBaseTense, germ.parent, parent_base, germ.germinated, germ.pos, germ.feature,
+            short_path = germ.feature if germ.feature=="ROOT" else germ.shortpath + '.' + germ.feature
+            long_path = germ.feature if germ.feature=="ROOT" else germ.longpath + '.' + germ.feature + '-' + germ.subject + '+' + germ.object
+            futures[executor.submit(runOnBaseTense, germ.parent, short_path,long_path, germ.germinated, germ.pos, germ.feature,
                                     forms)] = germ
     for future in as_completed(futures):
         future.result()
@@ -67,7 +68,6 @@ if __name__ == '__main__':
         "V":
             {
                 "ROOT": ["PAST", "PRESENT", "VERBPREFIXPAST", "VERBSUFFIX", "PASSIVE", "VERB2NOUN","VERBY"],
-                "PASSIVE": ["PAST", "PRESENT"],
                 "PAST": ["VERBPREFIXPAST", "VERBSUFFIX" ],
                 "VERBY": ["VERBPREFIXPAST", "VERBSUFFIX" ],
                 "PRESENT": ["VERBPREFIXPRESENT", "VERBSUFFIX" ],

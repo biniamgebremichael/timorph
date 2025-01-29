@@ -12,7 +12,7 @@ class TestTFST(unittest.TestCase):
                 'K': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNZCPSQWT]"),
                 'C': FST.re("[bcdfghjklmnpqrstvwxyz12HQKNZCPSQWAOT]")}
     def test_rule_generator(self):
-        self.assertEqual("$^rewrite((e):(a) /  _ $C$V # ,longest = True, leftmost = True )", TFST._generate("-2e_a"))
+        self.assertEqual("$^rewrite((e):(a) / _ $C$V # ,longest = True, leftmost = True )", TFST._generate("-2e_a"))
     def testPyfoma(self):
         CeCICaCV = " $^rewrite((a):I / $C e $C I $C _ $C $V # )  @ $^rewrite($V:(Iti) / # $C e $C I $C I $C _ # )  @ $^rewrite((I):a / $C e $C _ $C I $C $V t $V # )"
         _at = " $^rewrite($V:(atI) /   $C _ # ) "
@@ -56,6 +56,9 @@ class TestTFST(unittest.TestCase):
         self.assertEqual(Geez2Sera.sera2geez(list(tfst.generate( Geez2Sera.geez2sera("ድሙ")))[0]), "ድሙኽን")
         self.assertEqual(Geez2Sera.sera2geez(list(tfst.generate( Geez2Sera.geez2sera("ቤት")))[0]), "ቤትክን")
 
+    def test_rule3(self):
+        rule = '-2e_I'
+        self.assertEqual(TFST._generate(rule),TFST._generate2(rule) )
 
     def test_prular(self):
         rule = "I_IkInI @ a_aKInI @ i_iKInI @ u_uKInI @ E_EKInI @ o_oKInI @ e_eKInI "
@@ -77,6 +80,14 @@ class TestTFST(unittest.TestCase):
         src = Geez2Sera.geez2sera("ረኸበ")
         tfst = TFST("0tI_ @ 0q_Q @ 0k_K @ 2q_Q @ 2K_k @ 1e_I @ 1a_I @ 0_Aa")
         self.assertEqual(Geez2Sera.sera2geez(list(tfst.generate(src))[0]), "ኣርከበ")
+
+
+    def test_generate_consonant(self):
+        src = Geez2Sera.geez2sera("ትለክሚ")
+        rule = "-2lke_I"
+        tfst = TFST(rule)
+        self.assertEqual("$^rewrite((e):(I) / # $C$V l _ ,shortest = True, leftmost = True )",TFST().rule)
+        self.assertEqual(Geez2Sera.sera2geez(list(tfst.generate(src))[0]), "ትልክሚ")
 
 if __name__ == '__main__':
     unittest.main()

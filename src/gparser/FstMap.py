@@ -80,5 +80,10 @@ class FstMap:
 
 
 if __name__ == "__main__":
-    all_ = FstMap().generate_all2('NOUNPLURAL', "kelIbi")
-    print(json.dumps(all_, indent='\t'))
+    all_ = FstMap().map
+    for a in all_.values():
+        for b in a.values():
+            for c in b.values():
+                x  = TFST.TFST(c)
+                if(not "rewrite" in c):
+                    print ('self.assertEqual("'+x.rule+'",TFST("'+c+'").rule)')

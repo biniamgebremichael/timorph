@@ -79,11 +79,11 @@ def csvPrint(map):
             print(line)
 
 def getNouns():
-    return getInput("nouns","N")
+    return getInput("nouns.txt","N")
 def getVerbs():
-    return getInput("verbs","V")
-def getInput(pos,posid):
-    score_file = os.path.join(os.path.dirname(__file__),  f"../resources/{pos}.txt")
+    return getInput("verbs.txt","V")
+def getInput(pos_file,posid):
+    score_file = os.path.join(os.path.dirname(__file__),  f"../resources/{pos_file}")
     f = open(score_file, encoding='utf-8')
     lines = f.readlines()
     return [(l.strip(),posid ) for l in lines]
