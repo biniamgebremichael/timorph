@@ -21,18 +21,6 @@ def runner(form, root):
     # store(root, json.dumps({"map":map}))
 
 
-def runOnBaseTense2(parentroot, word, pos, base_tense, forms):
-    dbPersistor = DbPersistor()
-    for feature in forms:
-        if (dbPersistor.existGermination(word, pos, base_tense, feature) <= 0):
-            map = runner(feature, word)
-            map_ = [x.to_tuple() for x in Germination.objectify(parentroot, word, base_tense, pos, feature, map)]
-            dbPersistor.addGermination(map_)
-            csvPrint2(word, base_tense + "_" + feature, map)
-        else:
-            print(word, pos, base_tense, '>', feature, 'already done')
-
-
 def runOnBaseTense(parentroot,short_path,long_path, word, pos, base_tense, forms):
     dbPersistor = DbPersistor()
     if (base_tense in forms[pos]):
@@ -41,9 +29,9 @@ def runOnBaseTense(parentroot,short_path,long_path, word, pos, base_tense, forms
                 map = runner(feature, word)
                 map_ = [x.to_tuple() for x in Germination.objectify(parentroot,short_path,long_path, word,  pos, feature, map)]
                 dbPersistor.addGermination(map_)
-                print(".",end='') #csvPrint2(word, parentbase + "_" + feature, map)
+                csvPrint2(word, short_path + ">>" + feature, map)
             else:
-                print(word, pos, base_tense, '>', feature, 'already done')
+                print(word, pos, short_path, '>', feature, 'already done')
 
 
 def run(germs):
@@ -63,7 +51,7 @@ if __name__ == '__main__':
     fst = FstMap()
 
     #cecece = [Germination.rootGermination("ሓተተ","V")]
-    cecece = [Germination.rootGermination(x[0],x[1]) for x in getVerbs()[0:10]]
+    cecece = [Germination.rootGermination(x[0],x[1]) for x in getVerbs()]
     forms = {
         "V":
             {
@@ -71,9 +59,9 @@ if __name__ == '__main__':
                 "PAST": ["VERBPREFIXPAST", "VERBSUFFIX" ],
                 "VERBY": ["VERBPREFIXPAST", "VERBSUFFIX" ],
                 "PRESENT": ["VERBPREFIXPRESENT", "VERBSUFFIX" ],
-                "VERBPREFIXPAST": ["VERBSUFFIX"],
-                "VERBPREFIXPRESENT": ["VERBSUFFIX"],
                 "VERB2NOUN": ["POSSESSIVE", "NOUNSUFFIX", "NOUNPREFIX"],
+                #"VERBPREFIXPAST": ["VERBSUFFIX"],
+                #"VERBPREFIXPRESENT": ["VERBSUFFIX"],
             },
         "N":
             {"ROOT": ["POSSESSIVE", "NOUNPLURAL", "NOUNSUFFIX", "NOUNPREFIX"],
@@ -83,8 +71,8 @@ if __name__ == '__main__':
     dbPersistor = DbPersistor()
     start_time = time.time()
     run(cecece)
-    run(dbPersistor.getGerminations())
-    run(dbPersistor.getGerminations())
+    for c in cecece:
+        run(dbPersistor.getGermination(c.parent))
 
     time_start_time = time.time() - start_time
     print("Elapsed time ", time_start_time, 'sec - ', time_start_time/60, 'min - ', time_start_time/3600, 'hrs - ')

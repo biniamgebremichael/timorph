@@ -16,7 +16,7 @@ class DbPersistor:
     def existGermination(self, base, pos, path, feature):
         with sqlite3.connect(self.db_file) as conn:
             cursor = conn.cursor()
-            cus = cursor.execute("select * from germination where BASE=?  and POS=? and  SHORTPATH=? and FEATURE=?",
+            cus = cursor.execute("select count(*) from germination where BASE=?  and POS=? and  SHORTPATH=? and FEATURE=? LIMIT 0,1",
                                  (base, pos, path, feature))
             fetchall = cus.fetchall()
             # print(fetchall)
