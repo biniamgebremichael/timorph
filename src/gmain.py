@@ -25,9 +25,10 @@ def runOnBaseTense(parentroot,short_path,long_path, word, pos, base_tense, forms
     dbPersistor = DbPersistor()
     if (base_tense in forms[pos]):
         for feature in forms[pos][base_tense]:
-            if (dbPersistor.existGermination(word, pos,  short_path, feature) <= 0):
+            if (dbPersistor.existGermination(word, pos, feature) <= 0):
                 map = runner(feature, word)
-                map_ = [x.to_tuple() for x in Germination.objectify(parentroot,short_path,long_path, word,  pos, feature, map)]
+                pos_output = 'N' if feature=='VERB2NOUN' else pos
+                map_ = [x.to_tuple() for x in Germination.objectify(parentroot,short_path,long_path, word,  pos_output, feature, map)]
                 dbPersistor.addGermination(map_)
                 csvPrint2(word, short_path + ">>" + feature, map)
             else:
@@ -51,7 +52,9 @@ if __name__ == '__main__':
     fst = FstMap()
 
     #cecece = [Germination.rootGermination("ሓተተ","V")]
-    cecece = [Germination.rootGermination(x[0],x[1]) for x in getVerbs()]
+    nouns = [Germination.rootGermination(x[0],x[1]) for x in getNouns()]
+    verbs = [Germination.rootGermination(x[0],x[1]) for x in getNouns()]
+    cecece = verbs+nouns
     forms = {
         "V":
             {
@@ -65,6 +68,7 @@ if __name__ == '__main__':
             },
         "N":
             {"ROOT": ["POSSESSIVE", "NOUNPLURAL", "NOUNSUFFIX", "NOUNPREFIX"],
+             "POSSESSIVE": [  "NOUNSUFFIX", "NOUNPREFIX"],
              },
         "A": {"ROOT": ["ADJPLURAL", "ADJPREFIX"]}
     }

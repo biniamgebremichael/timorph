@@ -13,14 +13,14 @@ class DbPersistor:
                 "CREATE TABLE IF NOT EXISTS germination (ID INTEGER PRIMARY KEY AUTOINCREMENT, PARENT TEXT, BASE TEXT, SHORTPATH TEXT, LONGPATH TEXT, POS TEXT,FEATURE TEXT,SUBJECT TEXT,OBJECT TEXT, GERMINATED TEXT , FREQUENCY INTEGER ,  UPDATETIME TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
     @lru_cache(maxsize=200)
-    def existGermination(self, base, pos, path, feature):
+    def existGermination(self, base, pos,  feature):
         with sqlite3.connect(self.db_file) as conn:
             cursor = conn.cursor()
-            cus = cursor.execute("select count(*) from germination where BASE=?  and POS=? and  SHORTPATH=? and FEATURE=? LIMIT 0,1",
-                                 (base, pos, path, feature))
+            cus = cursor.execute("select count(*) from germination where BASE=?  and POS=?   and FEATURE=? LIMIT 0,1",
+                                 (base, pos, feature))
             fetchall = cus.fetchall()
             # print(fetchall)
-        return len(fetchall)
+        return fetchall[0][0]
 
     def getParents(self):
         with sqlite3.connect(self.db_file) as conn:
