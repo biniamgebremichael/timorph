@@ -55,3 +55,5 @@ SHE,    $^rewrite('i':(itI) / w _ # ) @  $^rewrite('':(tI) / $C $V $C $V $C $V $
 THEY,   $^rewrite('i':(IyanI) / w _ # ) @ $^rewrite($V:(Iti) / $C $V $C $V $C $V $C _ # ) @ $^rewrite($V:e / $C $V $C $V $C _ $C I t i # ) @ $^rewrite($V:(atI) / # $C $V $C $V $C _ # ),$^rewrite('':(zeyI) / # _ $C $V $C $V $C $V # ) @ $^rewrite($V:(atI) / # z e y I $C $V $C $V $C _ # )
 ADJPREFIX,N
 I, $^rewrite('':(zeyI) / # _ $A  ) @ $^rewrite('Aa':(zeye) / #   _  $C   ) @ $^rewrite($V:I / # z e y e $C $V $C _   ) @  $^rewrite($V:I / # z e y e $C $V $C I $C _ # )
+ADVSUFFIX,N
+I, _nI

@@ -78,15 +78,20 @@ def csvPrint(map):
             line = f"{a:<{15}}" + ',' + ','.join([f"{m:<{15}}"  for m in y[a] ])
             print(line)
 
-def getNouns():
-    return getInput("nouns.txt","N")
-def getVerbs():
-    return getInput("verbs.txt","V")
-def getInput(pos_file,posid):
-    score_file = os.path.join(os.path.dirname(__file__),  f"../resources/{pos_file}")
+
+def getRootWords(posid=None):
+    score_file = os.path.join(os.path.dirname(__file__),  f"../resources/ti_roots.csv")
     f = open(score_file, encoding='utf-8')
     lines = f.readlines()
-    return [(l.strip(),posid ) for l in lines]
+    wordlist = []
+    for line in lines:
+        word_pos = line.strip().split(',')
+        word = word_pos[0].strip()
+        pos = word_pos[1].strip()
+        if(posid==None or pos==posid):
+            wordlist.append((word,pos))
+
+    return wordlist
 
 def csvPrint2(base, form, map):
     for x, y in map.items():

@@ -1,9 +1,9 @@
 import os,re
-from Geez2Sera import Geez2Sera
+from gparser.Geez2Sera import Geez2Sera
 
 class GeezScore:
     _all_words = dict()
-    score_file = os.path.join(os.path.dirname(__file__),  "resources/ti_score.txt")
+    score_file = os.path.join(os.path.dirname(__file__), "../resources/ti_score.txt")
 
     @staticmethod
     def is_cecece(word):

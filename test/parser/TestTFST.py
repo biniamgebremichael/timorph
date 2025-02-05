@@ -1,6 +1,6 @@
 import unittest
 from  gparser.TFST import TFST
-from  Geez2Sera import Geez2Sera
+from gparser.Geez2Sera import Geez2Sera
 
 from pyfoma import FST
 

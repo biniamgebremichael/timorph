@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigrinya Derivatives</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <script href="static/js/bootstrap.min.js"></script>
+    <script src="static/js/app.js"></script>
+</head>
+
+<body class="px-4" ng-app="myApp">
+<h2 class="py-4">Tigrinya Derivatives</h2>
+<div class="row" ng-controller="generateCtrl">
+    <div class="col-1 bg-light">
+        <h5>Roots  </h5>
+        <hr>
+        <h5>VERBS</h5>
+        <ul class="list list-unstyled  ">
+            <li class="list-item" ng-repeat="x in parents.V"><a
+                    ng-click="getGermination(x.pos,x.parent)">
+                <span ng-bind="x.parent"></span><span  class="px-2  flush-right  "
+                                                     ng-bind="x.count"> </span> </a></li>
+        </ul>
+    </div>
+
+    <div class="col-1 bg-light ">
+        <h5 class='text-primary' ng-click="getParents()"><span ng-bind="action"></span> </h5>
+        <hr>
+        <h5>NOUNS</h5>
+        <ul class="list list-unstyled   px-2">
+            <li class="list-item" ng-repeat="x in parents.N"><a
+                    ng-click="getGermination(x.pos,x.parent)"><span
+                    ng-bind="x.parent"> </span><span class="px-2  flush-right  "
+                                                     ng-bind="x.count"> </span></a></li>
+        </ul>
+    </div>
+
+    <ul class="col-8">
+        <h2><span ng-bind="word"></span> - <span ng-bind="myfeature"></span></h2>
+        <nav>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <button ng-class="{'nav-link active':x.feature==myfeature,'nav-link':x.feature!=myfeature }" class="nav-link" ng-repeat="x in germinates| unique: 'feature'" ><span ng-bind="x.feature" ng-click="newfeature(x.feature)"></span></button>
+
+            </ul>
+        </nav>
+        <div class="tab-content py-4" id="nav-tabContent">
+            <table class="table  table-sm">
+
+                <tr ng-repeat="y in germinates | unique: 'germinated'| filter:myfeature | orderBy:'frequency':1">
+
+                    <td><span ng-bind="y.base"></span></td>
+                    <td><span ng-bind="y.longpath"></span></td>
+                    <td><span ng-bind="y.feature"></span></td>
+                    <td><span ng-bind="y.subject"></span></td>
+                    <td><span ng-bind="y.object"></span></td>
+                    <td><span ng-bind="y.germinated"></span></td>
+                    <td><span ng-bind="y.frequency"></span></td>
+
+                </tr>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+</body>
+</html>

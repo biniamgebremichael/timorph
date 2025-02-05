@@ -1,7 +1,6 @@
-import json
 import os
-from Geez2Sera import Geez2Sera
-from GeezScore import GeezScore
+from gparser.Geez2Sera import Geez2Sera
+from gparser.GeezScore import GeezScore
 from gparser import TFST
 from concurrent.futures import ProcessPoolExecutor, as_completed, wait
 

@@ -1,7 +1,7 @@
 from gparser.FstMap import FstMap
 from gparser.Utils import *
-from Geez2Sera import Geez2Sera
-from GeezScore import GeezScore
+from gparser.Geez2Sera import Geez2Sera
+from gparser.GeezScore import GeezScore
 import os
 
 

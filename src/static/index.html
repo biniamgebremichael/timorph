@@ -11,66 +11,76 @@
 </head>
 
 <body class="p-4" ng-app="myApp">
-<h2 class="py-4">Tigrinya Derivatives</h2>
-<section class=" card " ng-controller="generateCtrl">
-    <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <select class="form-control" placeholder="tense" ng-model="tense">
-                    <option value="PAST">V - PAST</option>
-                    <option value="PRESENT">V - PRESENT</option>
-                    <option value="VERBY">V - VERB to Y</option>
-                    <option value="PASSIVE">V - VERB to PASSIVE</option>
-                    <option value="VERB2NOUN">V - VERB to NOUN</option>
-                    <option value="VERBPREFIXPRESENT">V - PREFIX for PRESENT</option>
-                    <option value="VERBPREFIXPAST">V - PREFIX for PAST</option>
-                    <option value="VERBSUFFIX">V - SUFFIX</option>
-                    <option value="NOUNSUFFIX">N - SUFFIX</option>
-                    <option value="NOUNPREFIX">N - PREFIX</option>
-                    <option value="POSSESSIVE">N - POSSESSIVE</option>
-                    <option value="NOUNPLURAL">N - PLURAL</option>
-                    <option value="ADJPLURAL">Adj - PLURAL</option>
-                    <option value="ADJPREFIX">Adj - PREFIX</option>
-                </select>
+<h2 class="py-4">Tigrinya Derivatives<small><a href="/generated">generated</a></small></h2>
+<div class="row" ng-controller="generateCtrl">
+        <div class="col-10">
+            <section class=" card ">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-control" placeholder="tense" ng-model="tense">
+                                <option value="PAST">V - PAST</option>
+                                <option value="PRESENT">V - PRESENT</option>
+                                <option value="VERBY">V - VERB to Y</option>
+                                <option value="PASSIVE">V - VERB to PASSIVE</option>
+                                <option value="VERB2NOUN">V - VERB to NOUN</option>
+                                <option value="VERBPREFIXPRESENT">V - PREFIX for PRESENT</option>
+                                <option value="VERBPREFIXPAST">V - PREFIX for PAST</option>
+                                <option value="VERBSUFFIX">V - SUFFIX</option>
+                                <option value="NOUNSUFFIX">N - SUFFIX</option>
+                                <option value="NOUNPREFIX">N - PREFIX</option>
+                                <option value="POSSESSIVE">N - POSSESSIVE</option>
+                                <option value="NOUNPLURAL">N - PLURAL</option>
+                                <option value="ADJPLURAL">Adj - PLURAL</option>
+                                <option value="ADJPREFIX">Adj - PREFIX</option>
+                            </select>
 
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="root"  ng-model="word">
-            </div>
-           <div class="col">
-            <button type="submit" class="btn btn-primary float-right pull-right" ng-click="refresh(tense,word)">  <span ng-bind="action"> </span> </button>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="root" ng-model="word">
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary float-right pull-right"
+                                    ng-click="refresh(tense,word)"><span ng-bind="action"> </span></button>
 
-           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <table   class="table" ng-repeat="row in data">
+                        <tr>
+                            <th>
+                                <div class="badge bg-secondary"><span ng-bind="row.count_unique "></span> / <span
+                                        ng-bind=" row.count_all "> </span></div>
+                            </th>
+                            <th ng-repeat="(x,y) in row.map.I">
+                                <span ng-bind="x"> </span></th>
+                        </tr>
+                        <tr ng-repeat="(key, value) in row.map">
+
+                            <td><span ng-bind="key"></span></td>
+                            <td ng-repeat="(x,y) in value">
+                            <span ng-class="{'text-info':y[1]>0 && y[1]<=5,'text-primary':y[1]>5 ,'text-success':y[1]>50,'text-muted':y[1]<=0  }"
+                                  ng-bind="y[0]" ng-click="newword(y[0])"></span> <span ng-bind="y[1]"></span></td>
+
+
+                    </table>
+                </div>
+                <div class="card-footer text-muted">
+                    <b>Possessive examples</b>
+                    <ul class="list list-inline px-4">
+                        <li class="list-inline-item" ng-repeat="x in nounexample"><a ng-click="refresh('POSSESSIVE',x)"
+                                                                                     ng-bind="x"> </a></li>
+                    </ul>
+                    <b>plural examples</b>
+                    <ul class="list list-inline px-4">
+                        <li class="list-inline-item" ng-repeat="x in nounexample"><a ng-click="refresh('NOUNPLURAL',x)"
+                                                                                     ng-bind="x"> </a></li>
+                    </ul>
+                </div>
+            </section>
         </div>
-
-
-         </div>
-    <div class="card-body">
-
-        <table class="table" ng-repeat="row in data">
-            <tr  >
-                <th><div class="badge bg-secondary"> <span  ng-bind="row.count_unique "></span>  / <span  ng-bind=" row.count_all "> </span> </div> </th>
-                <th ng-repeat="(x,y) in row.map.I" >
-                    <span ng-bind="x"> </span></th>
-            </tr>
-            <tr ng-repeat="(key, value) in row.map">
-
-                <td><span ng-bind="key"></span></td>
-                <td ng-repeat="(x,y) in value">
-                    <span ng-class="{'text-info':y[1]>0 && y[1]<=5,'text-primary':y[1]>5 ,'text-success':y[1]>50,'text-muted':y[1]<=0  }" ng-bind="y[0]" ng-click="newword(y[0])"></span> <span ng-bind="y[1]"></span></td>
-
-
-        </table>
     </div>
-    <div class="card-footer text-muted">
-        <b>Possessive examples</b>
-  <ul class="list list-inline px-4">
-    <li class="list-inline-item" ng-repeat="x in nounexample"><a  ng-click="refresh('POSSESSIVE',x)"  ng-bind="x"> </a></li>
-  </ul><b>plural examples</b>
-        <ul class="list list-inline px-4">
-            <li class="list-inline-item" ng-repeat="x in nounexample"><a  ng-click="refresh('NOUNPLURAL',x)"  ng-bind="x"> </a></li>
-        </ul>
-    </div>
-</section>
 </body>
 </html>

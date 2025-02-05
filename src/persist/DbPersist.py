@@ -22,20 +22,20 @@ class DbPersistor:
             # print(fetchall)
         return fetchall[0][0]
 
-    def getParents(self):
+    def getParents(self,pos,limit):
         with sqlite3.connect(self.db_file) as conn:
             cursor = conn.cursor()
-            cus = cursor.execute(
-                "SELECT DISTINCT PARENT,POS,COUNT(*) K FROM  germination GROUP BY PARENT,POS ORDER BY K DESC")
+            query = f"SELECT DISTINCT PARENT,POS,COUNT(DISTINCT GERMINATED) K FROM  germination   WHERE POS=? AND FREQUENCY>0 GROUP BY PARENT,POS ORDER BY K DESC LIMIT {limit},50"
+            cus = cursor.execute(query,[pos])
             fetchall = cus.fetchall()
-        return [{"parent": row[0], "pos": row[1], "count": row[3]} for row in fetchall]
+        return [{"parent": row[0], "pos": row[1], "count": row[2]} for row in fetchall]
 
-    def getGermination(self, parent):
+    def getGermination(self, pos,parent):
         with sqlite3.connect(self.db_file) as conn:
             cursor = conn.cursor()
             cus = cursor.execute(
-                "SELECT PARENT, BASE , SHORTPATH,LONGPATH, POS, FEATURE, SUBJECT, OBJECT, GERMINATED, FREQUENCY FROM  germination WHERE PARENT=?",
-                [parent])
+                "SELECT PARENT, BASE , SHORTPATH,LONGPATH, POS, FEATURE, SUBJECT, OBJECT, GERMINATED, FREQUENCY FROM  germination WHERE  FREQUENCY>=0 and PARENT=? and POS=?",
+                [parent,pos])
             fetchall = cus.fetchall()
         return [Germination(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]) for row in fetchall]
 

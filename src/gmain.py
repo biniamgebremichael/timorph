@@ -1,6 +1,6 @@
 from gparser.FstMap import FstMap
 from gparser.Utils import *
-from Geez2Sera import Geez2Sera
+from gparser.Geez2Sera import Geez2Sera
 from persist.Germination import Germination
 from persist.DbPersist import DbPersistor
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -54,9 +54,10 @@ if __name__ == '__main__':
     fst = FstMap()
 
     # cecece = [Germination.rootGermination("ሓተተ","V")]
-    nouns = [Germination.rootGermination(x[0], x[1]) for x in getNouns()]
-    verbs = [Germination.rootGermination(x[0], x[1]) for x in getNouns()]
-    cecece = verbs + nouns
+    #nouns = [Germination.rootGermination(x[0], x[1]) for x in getRootWords("N")]
+    #verbs = [Germination.rootGermination(x[0], x[1]) for x in getRootWords("V")]
+    #adj = [Germination.rootGermination(x[0], x[1]) for x in getRootWords("A")]
+    cecece = [Germination.rootGermination(x[0], x[1]) for x in getRootWords( )]
     forms = {
         "V":
             {
@@ -73,13 +74,14 @@ if __name__ == '__main__':
              "POSSESSIVE": ["NOUNPLURAL", "NOUNPREFIX"],
              "NOUNPREFIX": ["NOUNSUFFIX"],
              },
-        "A": {"ROOT": ["ADJPLURAL", "ADJPREFIX"]}
+        "A": {"ROOT": ["ADJPLURAL", "ADJPREFIX"]},
+        "R": {"ROOT": ["ADVSUFFIX"]}
     }
     dbPersistor = DbPersistor()
     start_time = time.time()
     run(cecece)
     for c in cecece:
-        run(dbPersistor.getGermination(c.parent))
+        run(dbPersistor.getGermination(c.pos,c.parent))
 
     time_start_time = time.time() - start_time
     print("Elapsed time ", time_start_time, 'sec - ', time_start_time / 60, 'min - ', time_start_time / 3600, 'hrs - ')

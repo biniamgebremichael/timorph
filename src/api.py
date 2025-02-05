@@ -3,12 +3,12 @@ from gparser import FstMap
 import os
 import json
 from gparser import TFST
-from Geez2Sera import Geez2Sera
-from flask import Flask, render_template
+from gparser.Geez2Sera import Geez2Sera
+from flask import Flask
+from persist.DbPersist import DbPersistor
 
 app = Flask(__name__  )
 counter = {}
-os.environ["SCORE_FILE"] = "resources/ti_score.txt"
 
 
 def consumer(maps):
@@ -28,6 +28,11 @@ def consumer(maps):
 def root():
     f = open(os.path.join(os.path.dirname(__file__), 'static/index.html'), mode="r", encoding='utf-8')
     return app.response_class(response=str(f.read()),status=200, mimetype="text/html")
+
+@app.route('/generated')
+def generated():
+    f = open(os.path.join(os.path.dirname(__file__), 'static/generated.html'), mode="r", encoding='utf-8')
+    return app.response_class(response=str(f.read()),status=200, mimetype="text/html")
 @app.route('/<verb>/<src>')
 def past_tense(verb, src):
     fst = FstMap.FstMap()
@@ -40,7 +45,25 @@ def past_tense(verb, src):
         mimetype='application/json'
     )
 
+@app.route('/parents/<limit>')
+def parents(limit):
+    dbDao = DbPersistor()
+    data = {"V":dbDao.getParents('V',limit),"N":dbDao.getParents('N',limit)}
+    return app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
 
+@app.route('/germinate/<pos>/<word>')
+def germinate(pos,word):
+    dbDao = DbPersistor()
+    data =  dbDao.getGermination(pos,word)
+    return app.response_class(
+        response=json.dumps([json.loads(x.to_json()) for x in data]),
+        status=200,
+        mimetype='application/json'
+    )
 @app.route('/generate/<feature>/<src>')
 def generate(feature, src):
     tfst = TFST.TFST(feature)
