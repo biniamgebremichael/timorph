@@ -31,7 +31,7 @@ def runOnBaseTense(parentroot, short_path, long_path, word, pos, base_tense, for
                 map_ = [x.to_tuple() for x in
                         Germination.objectify(parentroot, short_path, long_path, word, pos_output, feature, map)]
                 dbPersistor.addGermination(map_)
-                csvPrint2(word, short_path + ">>" + feature, map)
+                #csvPrint2(word, short_path + ">>" + feature, map)
             else:
                 print(word, pos, short_path, '>', feature, 'already done')
 
@@ -71,7 +71,8 @@ if __name__ == '__main__':
             },
         "N":
             {"ROOT": ["POSSESSIVE", "NOUNPLURAL", "NOUNPREFIX"],
-             "POSSESSIVE": ["NOUNPLURAL", "NOUNPREFIX"],
+             "NOUNPLURAL": ["POSSESSIVE", "NOUNPREFIX"],
+             "POSSESSIVE": ["NOUNPREFIX"],
              "NOUNPREFIX": ["NOUNSUFFIX"],
              },
         "A": {"ROOT": ["ADJPLURAL", "ADJPREFIX"]},

@@ -35,8 +35,8 @@ POSSESSIVE,ME,HIM,HER,US,THEM_M,THEM_F,YOUR_SM,YOUR_SF,YOUR_PM,YOUR_PF
 I,I_eyI @ u_oyI @ E_EyI @ a_ayI @ i_eyI @ e_eyI @ o_oyI ,u_IAu @ E_EAu @ a_aAu @ I_u @ i_u @ e_eAu @ o_oAu,a_aAa @ u_uAa @ E_EAa @ I_a @ i_a @ e_eAa @ o_oAa,i_I @ _na,I_omI @ u_uAomI @ E_EAomI @ a_aAomI @ i_omI @ e_EAomI @ o_oAomI,I_enI @ u_uAenI @ E_EAenI @ a_aAenI @ i_enI @ e_EAenI @ o_oAenI,a_aKa @ I_Ika @ i_IKa @ u_uKa @ E_EKa @ o_oKa @ e_eKa,i_IKi @ I_Iki @ a_aKi @ u_uKi @ E_EKi @ o_oKi @ e_eKi,I_IkumI @ a_aKumI @ i_IKumI @ u_uKumI @ E_EKumI @ o_oKumI @ e_eKumI,I_IkInI @ a_aKInI @ i_IKInI @ u_uKInI @ E_EKInI @ o_oKInI @ e_eKInI
 NOUNSUFFIX,N,KO,SI,DO,KE,MO
 I,_nI,_ko,_si,_do,_Ke,_mo
-NOUNPREFIX,N,B,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-,እንተዘይ-, ኣይ-,,
-I,0_nI,0_bI, 0_zI, 0_zeyI, 0_nIzeyI, 0_kemIzeyI, 0_AayI
+NOUNPREFIX,N,B,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-, ኣይ-,,
+I,0_nI,0_bI,0_te, 0_zI, 0_zeyI, 0_nIzeyI, 0_kemIzeyI, 0_AayI
 VERBSUFFIX,N,KO,SI,DO,KE,MO
 I,_nI,_ko,_si,_do,_Ke,_mo
 VERBPREFIXPRESENT,ተ-,ዝ-,ዘይ-, ንዘይ-,ከምዘይ-,እንተዘይ-, ኣይ-, እንተ-, ስለዝ- ,እና- ,ከምዝ-, ምስዝ- , ም-
