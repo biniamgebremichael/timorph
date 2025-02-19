@@ -41,16 +41,24 @@
         <h2><span ng-bind="word"></span> - <span ng-bind="myfeature"></span></h2>
         <nav>
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <button ng-class="{'nav-link active':x.feature==myfeature,'nav-link':x.feature!=myfeature }" class="nav-link" ng-repeat="x in germinates| unique: 'feature'" ><span ng-bind="x.feature" ng-click="newfeature(x.feature)"></span></button>
+                <button ng-class="{'nav-link active':x.feature==myfeature,'nav-link':x.feature!=myfeature }" class="nav-link" ng-repeat="x in germinates| unique: 'feature'" ><span ng-bind="x.feature" ng-click="newfeature(x.feature,'')"></span></button>
 
             </ul>
         </nav>
+        <nav>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <button ng-class="{'nav-link bg-warning':x.shortpath==subfilter,'nav-link':x.shortpath!=subfilter }" class="nav-link" ng-repeat="x in germinates| filter:myfeature:true| unique: 'shortpath'" ><span ng-bind="x.shortpath" ng-click="newfeature(x.feature,x.shortpath)"></span></button>
+
+            </ul>
+        </nav>
+
         <div class="tab-content py-4" id="nav-tabContent">
             <table class="table  table-sm">
 
-                <tr ng-repeat="y in germinates | unique: 'germinated'| filter:myfeature | orderBy:'frequency':1">
+                <tr ng-repeat="y in germinates | unique: 'germinated'| filter:myfeature:true | filter:subfilter | orderBy:'frequency':1">
 
                     <td><span ng-bind="y.base"></span></td>
+                    <td><span ng-bind="y.shortpath"></span></td>
                     <td><span ng-bind="y.longpath"></span></td>
                     <td><span ng-bind="y.feature"></span></td>
                     <td><span ng-bind="y.subject"></span></td>
@@ -61,6 +69,10 @@
                 </tr>
             </table>
         </div>
+        <ul class="list list-inline">
+            <li class="list-item px-2" ng-repeat="x in likes">
+                <span ng-bind="x"></span></li>
+        </ul>
 
 
 

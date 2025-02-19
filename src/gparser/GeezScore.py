@@ -3,6 +3,7 @@ from gparser.Geez2Sera import Geez2Sera
 
 class GeezScore:
     _all_words = dict()
+    _all_const_words = dict()
     score_file = os.path.join(os.path.dirname(__file__), "../resources/ti_score.txt")
 
     @staticmethod
@@ -29,6 +30,10 @@ class GeezScore:
                 ls = l.split()
                 if len(ls) == 2:
                     w = ls[0].strip()
+                    c = Geez2Sera.geez2sera(w).translate('euiaEIo')
+                    if( not c in GeezScore._all_const_words):
+                        GeezScore._all_const_words[c] = []
+                    GeezScore._all_const_words[c].append(w)
                     GeezScore._all_words[w]=int(ls[1])
 
     @staticmethod
@@ -37,3 +42,12 @@ class GeezScore:
         return GeezScore._all_words[word] if word in GeezScore._all_words else 0
 
 
+    @staticmethod
+    def consonants(word):
+        GeezScore.init()
+        c = Geez2Sera.geez2sera(word).translate('euiaEIo')
+        r = []
+        for  x in GeezScore._all_const_words:
+            if c in x:
+              r = r+  GeezScore._all_const_words[x]
+        return r

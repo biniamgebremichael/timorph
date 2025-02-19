@@ -4,6 +4,7 @@ import os
 import json
 from gparser import TFST
 from gparser.Geez2Sera import Geez2Sera
+from gparser.GeezScore import GeezScore
 from flask import Flask
 from persist.DbPersist import DbPersistor
 
@@ -33,7 +34,7 @@ def root():
 def generated():
     f = open(os.path.join(os.path.dirname(__file__), 'static/generated.html'), mode="r", encoding='utf-8')
     return app.response_class(response=str(f.read()),status=200, mimetype="text/html")
-@app.route('/<verb>/<src>')
+@app.route('/compute/<verb>/<src>')
 def past_tense(verb, src):
     fst = FstMap.FstMap()
     result = fst.generate_all2(verb.upper(), Geez2Sera.geez2sera(src),False)
@@ -64,6 +65,17 @@ def germinate(pos,word):
         status=200,
         mimetype='application/json'
     )
+
+
+@app.route('/likes/<word>')
+def like(word):
+    data =  GeezScore.consonants(word)
+    return app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+
 @app.route('/generate/<feature>/<src>')
 def generate(feature, src):
     tfst = TFST.TFST(feature)

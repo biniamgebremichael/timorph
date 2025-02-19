@@ -24,21 +24,7 @@ class TFST:
             position = position + "$V$C"
         return position
 
-    @staticmethod
-    def _generate2(src):
-        pattern = "^(\-){0,1}(\d){0,1}([^aeiouIE\\$]){0,1}(\\$*[aeiouIEV]*)([^aeiouIE\\$]){0,1}_(\w*)$"
-        if (re.match(pattern, src.strip())):
-            (d, p, c, f, k, t) = re.match(pattern, src.strip()).groups()
-            f = f if f else "''"
-            position = TFST.init_position(p)
-            applied = "longest" if not p or (int(p) > 0 and d == '-') else "shortest"
-            if (d == '-' or not p):
-                return f"$^rewrite(({f}):({t or ''}) / {c or ''} _ {k or ''} {position} # ,{applied} = True, leftmost = True )"
-            else:
-                return f"$^rewrite(({f}):({t or ''}) / # {position} {c or ''} _ {k or ''}   ,{applied} = True, leftmost = True )"
 
-        else:
-            print(src, 'does not match')
 
     @staticmethod
     def _generate(src):

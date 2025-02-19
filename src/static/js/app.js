@@ -22,7 +22,7 @@ myApp.service('dataService', function($http) {
     this.getData = function(tense, word, callbackFunc) {
         $http({
             method: 'GET',
-            url: "/"+tense+"/"+word
+            url: "/compute/"+tense+"/"+word
         }).then(function(data){
             callbackFunc(data);
         }) ;
@@ -39,6 +39,7 @@ myApp.service('dataService', function($http) {
 
 myApp.controller('generateCtrl', function($scope, dataService) {
     $scope.data = [];
+    $scope.likes = [];
     $scope.parents = [  ];
     $scope.parentLimit = 0;
     $scope.myfeature = '';
@@ -53,8 +54,9 @@ myApp.controller('generateCtrl', function($scope, dataService) {
     }
 
 
-    $scope.newfeature = function(feature) {
+    $scope.newfeature = function(feature,shortpath) {
      $scope.myfeature=feature;
+     $scope.subfilter=shortpath;
     }
 
     $scope.getParents = function(  ) {
@@ -75,6 +77,10 @@ myApp.controller('generateCtrl', function($scope, dataService) {
     $scope.word=word;
      dataService.getUrl("/germinate/"+pos+"/"+word, function(dataResponse) {
                     $scope.germinates = dataResponse.data ;
+                });
+
+     dataService.getUrl("/likes/"+word, function(dataResponse) {
+                    $scope.likes = dataResponse.data ;
                 });
     };
 

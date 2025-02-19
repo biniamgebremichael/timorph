@@ -36,10 +36,12 @@ class Geez2Sera:
     def sera2geez(word):
         Geez2Sera.init()
         words = []
-        for w in word.split():
-            w3 = "".join([Geez2Sera._sera_geez[w1.strip()] if w1 in Geez2Sera._sera_geez else Geez2Sera._sera_geez[w1.strip().replace("W",'')]  for w1 in Geez2Sera.split_syllabus(w)])
-            words.append(w3)
-
+        try:
+            for w in word.split():
+                w3 = "".join([Geez2Sera._sera_geez[w1.strip()] if w1 in Geez2Sera._sera_geez else Geez2Sera._sera_geez[w1.strip().replace("W",'')]  for w1 in Geez2Sera.split_syllabus(w)])
+                words.append(w3)
+        except Exception as e:
+            print("parse error",word,str(e))
         return " ".join(words)
 
     @staticmethod
